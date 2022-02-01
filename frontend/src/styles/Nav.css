@@ -1,0 +1,16 @@
+.navbar {
+    color: black;
+}
+
+.navbarlist {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.navbarlist__obj {
+    display: flex;
+    text-decoration: none;
+    padding: 10px;
+}
+

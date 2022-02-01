@@ -1,10 +1,12 @@
 import '../styles/App.css';
+import React from 'react';
 import Header from './Header';
 import ContentList from './ContentList';
-import React from 'react';
+import Footer from './Footer';
+
 
 function App() {
-  return <React.Fragment><Header /><ContentList /></React.Fragment>
+  return <React.Fragment><Header /><ContentList /><Footer /></React.Fragment>
 }
 
 export default App;
