@@ -1,10 +1,12 @@
 // Import des packages
 const express = require('express');
 const app = express();
-const pgp = require('pg-promise')();
-const dotenv = require("dotenv");
-dotenv.config();
+//const pgp = require('pg-promise')();
+// const dotenv = require("dotenv");
+// dotenv.config();
 const path = require('path');
+const db = require('./database')
+
 
 // Import routes
 const userRoutes = require ('./routes/user');
@@ -12,10 +14,10 @@ const contentRoutes = require ('./routes/content');
 const commentRoutes = require ('./routes/comment');
 
 // PostgreSQL
-const db = pgp(process.env.POSTGRESQL);
-db.connect()
-.then(() => console.log('Connected to ElephantSQL'))
-.catch(() => console.log('Connection failed'));
+//const db = pgp(process.env.POSTGRESQL);
+//db.connect()
+//.then(() => console.log('Connected to ElephantSQL'))
+//.catch(() => console.log('Connection failed'));
 
 
 // CORS
@@ -33,6 +35,8 @@ app.use((req, res, next) => {
 });
 
 // Middleware
+// Utilisation du body sur req
+app.use(express.json());
 
 // Routes
 app.use('/api/auth', userRoutes);
