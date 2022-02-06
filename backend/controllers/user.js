@@ -25,12 +25,10 @@ exports.login = async (req, res) => {
         const passwordh = data[0].passwordh;
         console.log(id_user, emaildb, passwordh)
         if(req.body.email !== emaildb){
-            throw (error)
             return res.status(401).json({ error: 'Utilisateur non trouvé' });
         }
         const match = await bcrypt.compare(req.body.password, passwordh)
         if(!match){
-            throw (error);
             return res.status(401).json({ error: 'Mot de passe incorrect' });
         }
         res.status(200).json({
@@ -46,6 +44,26 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.getProfile = (req, res) => {
-    
+// Récupération des informations d'un profil par son id 
+exports.getProfile = async (req, res) => {
+    try {
+        console.log("req id: ", req.params.id)
+        const data = await db.any("SELECT * FROM users WHERE id_user = $1",req.params.id);
+        
+        console.log("data:", data[0].id_user)
+        if (req.params.id != data[0].id_user){
+            return res.status(401).json({ error: 'Utilisateur non trouvé' });
+        }
+        res.status(200).json({
+            id_user: data[0].id_user,
+            email: data[0].email,
+            firstname: data[0].firstname,
+            lastname: data[0].lastname,
+            last_interaction: data[0].last_interaction,
+        });
+    }
+    catch (error){
+        console.log(error)
+        return res.status(500).json({ error })
+    }
 };
