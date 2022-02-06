@@ -47,10 +47,7 @@ exports.login = async (req, res) => {
 // Récupération des informations d'un profil par son id 
 exports.getProfile = async (req, res) => {
     try {
-        console.log("req id: ", req.params.id)
         const data = await db.any("SELECT * FROM users WHERE id_user = $1",req.params.id);
-        
-        console.log("data:", data[0].id_user)
         if (req.params.id != data[0].id_user){
             return res.status(401).json({ error: 'Utilisateur non trouvé' });
         }
