@@ -6,9 +6,9 @@ const multer = require('../middleware/multer-config');
 
 const contentCtrl = require('../controllers/content');
 
-router.post('/', auth, multer, contentCtrl.createContent);
+router.post('/:iduser', auth, multer, contentCtrl.createContent);
 router.get('/', auth, contentCtrl.getRecentContent);
-router.get('/:id', auth, contentCtrl.getOneContent);
-router.delete('/:id', auth, contentCtrl.deleteContent);
+router.get('/:iduser/:id', auth, contentCtrl.getOneContent);
+router.delete('/:iduser/:id', auth, contentCtrl.deleteContent);
 
 module.exports = router;
