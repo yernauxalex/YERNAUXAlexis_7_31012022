@@ -25,7 +25,14 @@ exports.createContent = async (req, res, next) => {
 // Recherche du contenu récent
 exports.getRecentContent = async (req, res, next) => {
     try{
-
+        const data = await db.any("SELECT * FROM content ORDER BY date DESC LIMIT 10");
+        let datajson = [];
+        for (let index = 0; index < 10; index++) {
+            if (data[index] != null){
+                datajson.push(data[index]);
+            }
+        }
+        return res.status(200).json({datajson});
     }
     catch(error){
         console.log(error)
