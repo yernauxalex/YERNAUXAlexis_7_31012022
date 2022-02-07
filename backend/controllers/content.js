@@ -47,14 +47,15 @@ exports.getOneContent = async (req, res, next) => {
         if (req.params.id != data[0].id_content){
             return res.status(401).json({ error: 'Contenu non trouvé' });
         }
-        res.status(200).json({
-            id_content: data[0].id_content,
-            text_content: data[0].text_content,
-            date: data[0].date,
-            media: data[0].media,
-            media_content: data[0].media_content,
-            id_author: data[0].id_author,
-        });
+        res.status(200).json({data: data[0]})
+        // res.status(200).json({
+        //     id_content: data[0].id_content,
+        //     text_content: data[0].text_content,
+        //     date: data[0].date,
+        //     media: data[0].media,
+        //     media_content: data[0].media_content,
+        //     id_author: data[0].id_author,
+        // });
     }
     catch(error){
         console.log(error)
