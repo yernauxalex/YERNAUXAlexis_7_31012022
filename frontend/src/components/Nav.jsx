@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { AuthContext } from '../Utils/AuthContext'
 
@@ -16,49 +16,40 @@ const StyledLink = styled(Link)`
 `
 
 function Nav() {
-  const { setAuthState } = useContext(AuthContext)
-  //const [authState, setAuthState] = useState()
+  const { authState, setAuthState } = useContext(AuthContext)
+  let navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.clear()
+    setAuthState({ id: '', token: '', status: false })
+    navigate('/signin')
   }
 
-  // if (!authState) {
-  //   return (
-  //     <nav className="navbar">
-  //       <StyledNavBar>
-  //         <StyledLink to="/" className="navbarlist__link">
-  //           Accueil
-  //         </StyledLink>
-  //         <StyledLink to="/signup" className="navbarlist__link">
-  //           Inscription
-  //         </StyledLink>
-  //         <StyledLink
-  //           to="/signin"
-  //           className="navbarlist__link"
-  //           setAuthState={setAuthState}
-  //         >
-  //           Connexion
-  //         </StyledLink>
-  //       </StyledNavBar>
-  //     </nav>
-  //   )
-  // }
+  if (!authState.status) {
+    return (
+      <nav className="navbar">
+        <StyledNavBar>
+          <StyledLink to="/" className="navbarlist__link">
+            Accueil
+          </StyledLink>
+          <StyledLink to="/signup" className="navbarlist__link">
+            Inscription
+          </StyledLink>
+          <StyledLink
+            to="/signin"
+            className="navbarlist__link"
+            setAuthState={setAuthState}
+          >
+            Connexion
+          </StyledLink>
+        </StyledNavBar>
+      </nav>
+    )
+  }
   return (
     <nav className="navbar">
       <StyledNavBar>
         <StyledLink to="/" className="navbarlist__link">
           Accueil
-        </StyledLink>
-        <StyledLink to="/signup" className="navbarlist__link">
-          Inscription
-        </StyledLink>
-        <StyledLink
-          to="/signin"
-          className="navbarlist__link"
-          setAuthState={setAuthState}
-        >
-          Connexion
         </StyledLink>
         <StyledLink to="/profile" className="navbarlist__link">
           Profil
