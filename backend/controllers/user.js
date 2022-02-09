@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
         console.log("before sql request - email: ",req.body.email)
         console.log("before sql request - password: ",req.body.password)
 
-        const data = await db.any("SELECT id_user, email, passwordh FROM users WHERE email = $1", req.body.email)
+        const data = await db.any("SELECT * FROM users WHERE email = $1", req.body.email)
         const id_user = data[0].id_user;
         const emaildb = data[0].email;
         const passwordh = data[0].passwordh;
@@ -38,6 +38,10 @@ exports.login = async (req, res) => {
             token: jwt.sign({id_user}, 'RANDOM_TOKEN_SECRET', {
                 expiresIn: '60d',
             }),
+            email: emaildb,
+            firstname: data[0].firstname,
+            lastname: data[0].lastname,
+            last_interaction: data[0].last_interaction,
         });
     }
     catch(error){
@@ -66,3 +70,5 @@ exports.getProfile = async (req, res) => {
         return res.status(500).json({ error })
     }
 };
+
+// Suppression d'un utilisateur ainsi que toutes ses publications / commentaires

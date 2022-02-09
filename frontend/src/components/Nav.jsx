@@ -21,6 +21,7 @@ function Nav() {
 
   const handleLogout = () => {
     setAuthState({ id: '', token: '', status: false })
+    localStorage.removeItem('userInfo')
     navigate('/signin')
   }
 
@@ -53,6 +54,9 @@ function Nav() {
         </StyledLink>
         <StyledLink to="/profile" className="navbarlist__link">
           Profil
+        </StyledLink>
+        <StyledLink to="/CreatePost" className="navbarlist__link">
+          Partager
         </StyledLink>
         <input type="button" onClick={handleLogout} value="Déconnexion" />
       </StyledNavBar>
