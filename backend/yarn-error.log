@@ -1,0 +1,44 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\yerna\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add express-sanitizer
+
+PATH: 
+  C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\youtube-dl;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\yerna\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\yerna\AppData\Local\Programs\Python\Python310\;C:\Users\yerna\AppData\Local\Microsoft\WindowsApps;C:\Users\yerna\AppData\Local\atom\bin;C:\Users\yerna\AppData\Local\Microsoft\WindowsApps;C:\Users\yerna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\yerna\AppData\Local\GitHubDesktop\bin;C:\Users\yerna\AppData\Local\gitkraken\bin;C:\Users\yerna\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.13.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\yerna\Documents\git_repo\YERNAUXAlexis_7_31012022\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+
+npm manifest: 
+  {
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "bcrypt": "^5.0.1",
+      "dotenv": "^15.0.0",
+      "express": "^4.17.2",
+      "jsonwebtoken": "^8.5.1",
+      "multer": "^1.4.4",
+      "pg-promise": "^10.11.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
