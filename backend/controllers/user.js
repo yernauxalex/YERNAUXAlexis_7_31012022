@@ -1,14 +1,33 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const emailValidator = require('email-validator');
+const passwordValidator = require('password-validator');
 const db = require('../database')
+
+// Création du schéma pour le mot de passe
+const schema = new passwordValidator();
+schema
+    .is().min(8)
+    .is().max(100)
+    .has().uppercase()
+    .has().lowercase()
+    .has().symbols()
+    .has().digits(1)
+    .has().not().spaces()
 
 // Création d'un nouveau compte
 exports.signup = async (req, res) => {
     try{
+        if (!emailValidator.validate(req.body.email)){
+            return res.status(400).json({ message: 'Format du mail invalide'})
+        }
+        if (!schema.validate(req.body.password)){
+             return res.status(400).json({ message: 'Format du  mot de passe invalide, 8 caratères minimum, dont une majuscule, une minuscule, un caractrère spécial (#?!@$%^&*-.) et un chiffre'})
+        }
         const passwordh = await bcrypt.hash(req.body.password, 10);
         await db.any("INSERT INTO users (email, firstname, lastname, passwordh) VALUES ($1,$2,$3,$4);", [req.body.email, req.body.lastname, req.body.firstname, passwordh]);
         return res.status(201).json({ message: 'Utilisateur crée' });
-        }
+    }
     catch(error) {
         return res.status(400).json({ error })
     };
