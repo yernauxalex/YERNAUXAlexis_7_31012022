@@ -1,5 +1,26 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+const emailValidator = require('email-validator')
+const passwordValidator = require('password-validator')
+
+// Création du schéma pour le mot de passe
+const schema = new passwordValidator()
+schema
+  .is()
+  .min(8)
+  .is()
+  .max(100)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .symbols()
+  .has()
+  .digits(1)
+  .has()
+  .not()
+  .spaces()
 
 // Appel API
 async function fetchSignup(credentials) {
@@ -9,7 +30,9 @@ async function fetchSignup(credentials) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(credentials),
-  }).then((data) => data.json())
+  })
+    .then((data) => data.json())
+    .catch((error) => console.log(error))
 }
 
 function Signup() {
@@ -22,13 +45,23 @@ function Signup() {
   // Fonction appelée lors du submit
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await fetchSignup({
-      email,
-      lastname,
-      firstname,
-      password,
-    })
-    navigate('/Signin')
+    if (emailValidator.validate(email)) {
+      if (schema.validate(password)) {
+        await fetchSignup({
+          email,
+          lastname,
+          firstname,
+          password,
+        })
+        navigate('/Signin')
+      } else {
+        alert(
+          'Format du  mot de passe invalide, 8 caratères minimum, dont une majuscule, une minuscule, un caractrère spécial (#?!@$%^&*-.) et un chiffre'
+        )
+      }
+    } else {
+      alert('Format du mail invalide')
+    }
   }
 
   return (
