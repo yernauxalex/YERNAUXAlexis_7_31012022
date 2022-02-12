@@ -1,39 +1,50 @@
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../Utils/AuthContext'
 
 // Appel API
-async function fetchNewPost(credentials, iduser) {
-  return fetch(
-    `http://localhost:3000/api/content/:iduser=${iduser}/createContent`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    }
-  ).then((data) => data.json())
+async function fetchNewPost(credentials, iduser, token) {
+  return fetch(`http://localhost:3000/api/content/${iduser}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json())
 }
 
 function CreatePost() {
   const [text_content, setText_content] = useState('')
   const [media_content, setMedia_content] = useState('')
+  const { authState } = useContext(AuthContext)
   const newPost = async (e) => {
     e.preventDefault()
+    const token = authState.token
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
     const id_author = userInfo.id_user
-    const data = await fetchNewPost(
-      {
-        text_content,
-        media_content,
+    if (media_content) {
+      await fetchNewPost(
+        {
+          text_content,
+          media_content,
+        },
         id_author,
-      },
-      id_author
-    )
+        token
+      )
+    } else {
+      await fetchNewPost(
+        {
+          text_content,
+        },
+        id_author,
+        token
+      )
+    }
   }
   return (
     <div>
       <h1>Créer un nouveau contenu</h1>
-      <form onClick={newPost}>
+      <form>
         <div className="input-container">
           <label>Texte</label>
           <input
@@ -42,7 +53,16 @@ function CreatePost() {
             onChange={(e) => setText_content(e.target.value)}
           />
         </div>
-        <input type="button" value="Nouveau post" />
+        <div className="input-container">
+          <label>Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            name="media_content"
+            onChange={(e) => setMedia_content(e.target.value)}
+          />
+        </div>
+        <input type="button" value="Nouveau post" onClick={newPost} />
       </form>
     </div>
   )
