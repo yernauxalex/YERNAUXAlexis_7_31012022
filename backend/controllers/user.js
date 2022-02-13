@@ -91,3 +91,16 @@ exports.getProfile = async (req, res) => {
 };
 
 // Suppression d'un utilisateur ainsi que toutes ses publications / commentaires
+exports.deleteProfile = async (req, res) => {
+    try {
+        await db.any("DELETE FROM comments WHERE id_author_comment = $1", req.params.id);
+        await db.any("DELETE FROM content WHERE id_author = $1", req.params.id);
+        await db.any("DELETE FROM users WHERE id_user = $1", req.params.id);
+        return res.status(201).json({ message: 'Utilisateur supprimé' });
+        
+    }
+    catch (error) {
+        console.log(error)
+        return res.status(500).json({ error })
+    }
+}
