@@ -14,12 +14,13 @@ async function fetchDelete(id, token) {
 
 function Profile(props) {
   const { authState, setAuthState } = useContext(AuthContext)
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
 
   const handleLogout = () => {
     setAuthState({ id: '', token: '', status: false })
     localStorage.removeItem('userInfo')
+    sessionStorage.removeItem('accessToken')
     navigate('/signin')
   }
 
@@ -29,6 +30,7 @@ function Profile(props) {
     await fetchDelete(id, token)
     setAuthState({ id: '', token: '', status: false })
     localStorage.removeItem('userInfo')
+    sessionStorage.removeItem('accessToken')
     navigate('/signup')
   }
   return (

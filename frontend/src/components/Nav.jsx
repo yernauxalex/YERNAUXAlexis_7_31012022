@@ -22,6 +22,7 @@ function Nav() {
   const handleLogout = () => {
     setAuthState({ id: '', token: '', status: false })
     localStorage.removeItem('userInfo')
+    sessionStorage.removeItem('accessToken')
     navigate('/signin')
   }
 
