@@ -17,7 +17,7 @@ function Signin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { setAuthState } = useContext(AuthContext)
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   // Fonction appelée lors du submit
   const handleSubmit = async (e) => {

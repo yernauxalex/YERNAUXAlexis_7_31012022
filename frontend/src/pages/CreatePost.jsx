@@ -31,6 +31,7 @@ function CreatePost() {
         id_author,
         token
       )
+      alert("Contenu crée")
     } else {
       await fetchNewPost(
         {
@@ -39,6 +40,7 @@ function CreatePost() {
         id_author,
         token
       )
+      alert("Contenu crée")
     }
   }
   return (

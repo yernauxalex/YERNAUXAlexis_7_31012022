@@ -5,22 +5,15 @@ const passwordValidator = require('password-validator')
 
 // Création du schéma pour le mot de passe
 const schema = new passwordValidator()
+//prettier-ignore
 schema
-  .is()
-  .min(8)
-  .is()
-  .max(100)
-  .has()
-  .uppercase()
-  .has()
-  .lowercase()
-  .has()
-  .symbols()
-  .has()
-  .digits(1)
-  .has()
-  .not()
-  .spaces()
+  .is().min(8)
+  .is().max(100)
+  .has().uppercase()
+  .has().lowercase()
+  .has().symbols()
+  .has().digits(1)
+  .has().not().spaces()
 
 // Appel API
 async function fetchSignup(credentials) {
