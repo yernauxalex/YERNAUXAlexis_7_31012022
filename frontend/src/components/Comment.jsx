@@ -12,8 +12,8 @@ const StyledCommentText = styled.p``
 function Comment(props) {
   return (
     <StyledComment>
-      <StyledName>Name comment{props.author}</StyledName>
-      <StyledCommentText>comment{props.text}</StyledCommentText>
+      <StyledName>Name comment{props.id_author_comment}</StyledName>
+      <StyledCommentText>comment{props.data_comment}</StyledCommentText>
     </StyledComment>
   )
 }
