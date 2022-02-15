@@ -16,8 +16,6 @@ import Card from './Card'
 // post récupérés dans la DB via l'API, à voir si c'est possible
 const postLiist = ['Post1', 'Post2', 'Post3']
 
-// ul/li pour l'exemple, index devra être remplacé par l'id du post présent dans la DB
-// Système de carte préférable
 function ContentList() {
   const [data, setData] = useState([])
   const [isDataLoading, setDataLoading] = useState(false)
@@ -41,7 +39,7 @@ function ContentList() {
         if (!sessionStorage.getItem('accessToken')) {
           navigate('/signin')
         } else {
-          for (let index = 0; index < 10; index++) {
+          for (let index = 0; index < 5; index++) {
             if (data.datajson[index] != null) {
               postList.push(data.datajson[index])
               console.log(data.datajson[index])
@@ -58,7 +56,7 @@ function ContentList() {
     }
     fetchPost()
   }, [])
-  // le rendu se fait probablement avant que le call api soit effectué
+
   return (
     <section>
       {isDataLoading ? (

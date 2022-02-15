@@ -47,7 +47,7 @@ function Card(props) {
         if (!sessionStorage.getItem('accessToken')) {
           navigate('/signin')
         } else {
-          for (let index = 0; index < 10; index++) {
+          for (let index = 0; index < 5; index++) {
             if (data.datajson[index] != null) {
               commentList.push(data.datajson[index])
               console.log(data.datajson[index])
