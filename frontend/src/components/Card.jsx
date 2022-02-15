@@ -4,7 +4,6 @@ import Comment from './Comment'
 const StyledContainer = styled.article`
   display: flex;
   flex-flow: colum wrap;
-  flex-direction: column;
 `
 const StyledContent = styled.div`
   display: flex;
@@ -22,14 +21,15 @@ function Card(props) {
     author: props.commentAuthor,
     text: props.commentText,
   }
+
   return (
     <StyledContainer>
       <StyledContent>
-        <StyledTitle>Nom auteur {props.author}</StyledTitle>
-        <StyledText>content{props.content}</StyledText>
+        <StyledTitle>Nom auteur {props.id_author}</StyledTitle>
+        <StyledText>content{props.text_content}</StyledText>
         {/*<img src={props.src} alt={props.scratl} /> */}
       </StyledContent>
-      <Comment comment={commentProps} />
+      <Comment {...commentProps} />
     </StyledContainer>
   )
 }
