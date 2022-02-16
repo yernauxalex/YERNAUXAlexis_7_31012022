@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Utils/AuthContext'
 
 // Appel API
-async function fetchNewPost(credentials, iduser, token) {
-  return fetch(`http://localhost:3000/api/content/${iduser}`, {
+async function fetchNewPost(credentials, id_user, token) {
+  return fetch(`http://localhost:3000/api/content/${id_user}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,6 +20,7 @@ function CreatePost() {
   const newPost = async (e) => {
     e.preventDefault()
     const token = authState.token
+    const id_user = authState.id
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
     const id_author = userInfo.id_user
     if (media_content) {
@@ -28,19 +29,19 @@ function CreatePost() {
           text_content,
           media_content,
         },
-        id_author,
+        id_user,
         token
       )
-      alert("Contenu crée")
+      alert('Contenu crée')
     } else {
       await fetchNewPost(
         {
           text_content,
         },
-        id_author,
+        id_user,
         token
       )
-      alert("Contenu crée")
+      alert('Contenu crée')
     }
   }
   return (

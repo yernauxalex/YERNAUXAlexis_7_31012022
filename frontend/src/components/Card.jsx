@@ -35,9 +35,11 @@ function Card(props) {
       const token = authState.token
       const id = props.id_content
       console.log(id)
+      const lsUser = JSON.parse(localStorage.getItem('userInfo'))
+      const id_user = lsUser.id_user
       try {
         const response = await fetch(
-          `http://localhost:3000/api/comment/${id}`,
+          `http://localhost:3000/api/comment/${id_user}/${id}`,
           {
             method: 'GET',
             headers: {

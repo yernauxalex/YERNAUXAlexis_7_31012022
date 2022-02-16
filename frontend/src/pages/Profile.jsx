@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 
 // Appel API
-async function fetchDelete(id, token) {
-  return fetch(`http://localhost:3000/api/auth/delete/${id}`, {
+async function fetchDelete(id_user, token) {
+  return fetch(`http://localhost:3000/api/auth/delete/${id_user}`, {
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + token,

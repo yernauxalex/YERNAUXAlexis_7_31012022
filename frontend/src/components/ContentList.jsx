@@ -25,13 +25,17 @@ function ContentList() {
     async function fetchPost() {
       setDataLoading(true)
       const token = authState.token
+      const id_user = authState.id
       try {
-        const response = await fetch('http://localhost:3000/api/content/', {
-          method: 'GET',
-          headers: {
-            Authorization: 'Bearer ' + token,
-          },
-        })
+        const response = await fetch(
+          `http://localhost:3000/api/content/${id_user}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: 'Bearer ' + token,
+            },
+          }
+        )
         const data = await response.json()
         console.log(data)
         if (!sessionStorage.getItem('accessToken')) {

@@ -12,8 +12,8 @@ exports.createContent = async (req, res, next) => {
         else{
             media = false;
         }
-        const data = await db.one("INSERT INTO content (text_content, media, media_content, id_author) VALUES ($1,$2,$3,$4) RETURNING id_content",[req.body.text_content, media, media_content, req.params.iduser]);
-        const update = await db.any("UPDATE users SET last_interaction = $1 WHERE id_user = $2", [data.id_content, req.params.iduser]);
+        const data = await db.one("INSERT INTO content (text_content, media, media_content, id_author) VALUES ($1,$2,$3,$4) RETURNING id_content",[req.body.text_content, media, media_content, req.params.id_user]);
+        const update = await db.any("UPDATE users SET last_interaction = $1 WHERE id_user = $2", [data.id_content, req.params.id_user]);
         return res.status(201).json({ message: 'Contenu ajouté' });
     }
     catch(error){

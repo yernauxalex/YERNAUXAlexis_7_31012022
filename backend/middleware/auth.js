@@ -5,16 +5,18 @@ module.exports = (req, res, next) => {
 		// Split pour récupérer le token après Bearer dans le header
 		const token = req.headers.authorization.split(' ')[1];
 		const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-		const userId = decodedToken.userId;
+		const userId = decodedToken.id_user;
+		Intid = parseInt(req.params.id_user)
 		req.auth = { userId };
-		if (req.body.userId && req.body.userId !== userId) {
-			throw 'Invalid user ID';
+		console.log("auth:")
+		console.log(userId)
+		console.log(req.params.id_user)
+		if (!Intid || Intid !== userId) {
+			return res.status(401).json({message: 'Accès non autorisé par auth'})
 		} else {
 			next();
 		}
 	} catch {
-		res.status(401).json({
-			error: new Error('Invalid request'),
-		});
+		return res.status(401).json({message: 'Accès non autorisé par auth'})
 	}
 };
