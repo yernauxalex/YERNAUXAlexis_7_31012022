@@ -6,11 +6,14 @@ import Comment from './Comment'
 
 const StyledContainer = styled.article`
   display: flex;
-  flex-flow: colum wrap;
+  flex-flow: column wrap;
+  background-color: #deebff;
+  border-radius: 26px;
+  padding: 5%;
+  margin: 5%;
 `
 const StyledContent = styled.div`
   display: flex;
-  flex-flow: colum wrap;
   flex-direction: column;
 `
 

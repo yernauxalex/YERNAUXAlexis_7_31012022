@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from './Card'
+import { Loader } from '../Utils/Loader'
 
 //Appel API
 // async function fetchPost(token) {
@@ -12,9 +13,6 @@ import Card from './Card'
 //     },
 //   }).then((data) => data.json())
 // }
-
-// post récupérés dans la DB via l'API, à voir si c'est possible
-const postLiist = ['Post1', 'Post2', 'Post3']
 
 function ContentList() {
   const [data, setData] = useState([])
@@ -60,11 +58,7 @@ function ContentList() {
   return (
     <section>
       {isDataLoading ? (
-        <ul>
-          {postLiist.map((posst, index) => (
-            <li key={`${posst}-${index}`}>{posst}</li>
-          ))}
-        </ul>
+        <Loader />
       ) : (
         <div className="Card">
           {data.map((dataObj) => (
