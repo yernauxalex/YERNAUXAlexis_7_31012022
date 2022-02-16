@@ -8,9 +8,6 @@ module.exports = (req, res, next) => {
 		const userId = decodedToken.id_user;
 		Intid = parseInt(req.params.id_user)
 		req.auth = { userId };
-		console.log("auth:")
-		console.log(userId)
-		console.log(req.params.id_user)
 		if (!Intid || Intid !== userId) {
 			return res.status(401).json({message: 'Accès non autorisé par auth'})
 		} else {
