@@ -53,10 +53,11 @@ exports.login = async (req, res) => {
             return res.status(401).json({ error: 'Mot de passe incorrect' });
         }
         res.status(200).json({
-            userId: id_user,
+            id_user: id_user,
             token: jwt.sign({id_user}, 'RANDOM_TOKEN_SECRET', {
                 expiresIn: '60d',
             }),
+            id_user: id_user,
             email: emaildb,
             firstname: data[0].firstname,
             lastname: data[0].lastname,
@@ -64,6 +65,32 @@ exports.login = async (req, res) => {
         });
     }
     catch(error){
+        console.log(error)
+        return res.status(500).json({ error })
+    }
+};
+
+// Changement de mot de pass
+exports.changePassword = async (req, res) => {
+    try {
+        // const token = req.headers.authorization.split(' ')[1];
+		// const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+		// const userId = decodedToken.id_user;
+        // const idUser = await db.any("SELECT id_user FROM users WHERE id_user = $1", userId)
+        // if (idUser[0].id_user != req.params.id){
+        //     return res.status(401).json({message: 'Accès non autorisé'})
+        // } 
+        if (req.body.password !== req.body.password2){
+            return res.status(400).json({message: 'Les mots de passe doivent être identiques'})
+        }
+        if (!schema.validate(req.body.password)){
+            return res.status(400).json({ message: 'Format du  mot de passe invalide, 8 caratères minimum, dont une majuscule, une minuscule, un caractrère spécial (#?!@$%^&*-.) et un chiffre'})
+       }
+       const passwordh = await bcrypt.hash(req.body.password, 10);
+       await db.any('UPDATE users SET passwordh = $1 WHERE id_user = $2', [passwordh, req.params.id])
+       return res.status(201).json({ message: 'Mot de passe modifié' });
+    }
+    catch (error) {
         console.log(error)
         return res.status(500).json({ error })
     }
