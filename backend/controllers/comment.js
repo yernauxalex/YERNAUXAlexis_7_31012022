@@ -3,8 +3,8 @@ const db = require('../database');
 // Création d'un nouveau commentaire dans la DB
 exports.createComment = async (req, res, next) => {
     try{
-        const data = await db.one("INSERT INTO comments (data_comment, content_id, id_author_comment) VALUES ($1, $2,$3) RETURNING id_comment",[req.body.data_content, req.params.id, req.params.iduser]);
-        const update = await db.any("UPDATE users SET last_interaction = $1, interaction = 'comment' WHERE id_user = $2", [data.id_comment, req.params.iduser]);
+        const data = await db.one("INSERT INTO comments (data_comment, content_id, id_author_comment) VALUES ($1, $2,$3) RETURNING id_comment",[req.body.data_content, req.params.id, req.params.id_user]);
+        const update = await db.any("UPDATE users SET last_interaction = $1, interaction = 'comment' WHERE id_user = $2", [data.id_comment, req.params.id_user]);
         return res.status(201).json({ message: 'Commentaire ajouté' });
     }
     catch(error){
