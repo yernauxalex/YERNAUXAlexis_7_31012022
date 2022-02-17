@@ -1,6 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
+const passwordValidator = require('password-validator')
+
+// Création du schéma pour le mot de passe
+const schema = new passwordValidator()
+//prettier-ignore
+schema
+  .is().min(8)
+  .is().max(100)
+  .has().uppercase()
+  .has().lowercase()
+  .has().symbols()
+  .has().digits(1)
+  .has().not().spaces()
 
 // Appel API
 async function fetchDelete(id_user, token) {
@@ -12,10 +25,25 @@ async function fetchDelete(id_user, token) {
   })
 }
 
+async function fetchChangePwd(credentials, id_user, token) {
+  return fetch(`http://localhost:3000/api/auth/changepswd/${id_user}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify(credentials),
+  })
+}
+
 function Profile(props) {
   const { authState, setAuthState } = useContext(AuthContext)
+  const [password1, setPassword1] = useState('')
+  const [password2, setPassword2] = useState('')
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
+  const token = authState.token
+  const id_user = authState.id
 
   const handleLogout = () => {
     setAuthState({ id: '', token: '', status: false })
@@ -25,13 +53,36 @@ function Profile(props) {
   }
 
   const handleDelete = async (e) => {
-    const token = authState.token
-    const id = authState.id
-    await fetchDelete(id, token)
+    await fetchDelete(id_user, token)
     setAuthState({ id: '', token: '', status: false })
     localStorage.removeItem('userInfo')
     sessionStorage.removeItem('accessToken')
     navigate('/signup')
+  }
+  const newPassword = async (e) => {
+    e.preventDefault()
+    if (password1 === password2) {
+      if (schema.validate(password1)) {
+        await fetchChangePwd(
+          {
+            password1,
+            password2,
+          },
+          id_user,
+          token
+        )
+        setAuthState({ id: '', token: '', status: false })
+        localStorage.removeItem('userInfo')
+        sessionStorage.removeItem('accessToken')
+        navigate('/signin')
+      } else {
+        alert(
+          'Format du  mot de passe invalide, 8 caratères minimum, dont une majuscule, une minuscule, un caractrère spécial (#?!@$%^&*-.) et un chiffre'
+        )
+      }
+    } else {
+      alert('Les mots de passes doivent être identiques')
+    }
   }
   return (
     <div>
@@ -42,9 +93,26 @@ function Profile(props) {
         </h2>
         <p></p>
       </section>
-      <section>
-        <h3>Dernière publication {userInfo.last_interaction}</h3>
-      </section>
+      <form>
+        <h3>Changement de mot de passe</h3>
+        <div className="input-container">
+          <label>Nouveau mot de passe</label>
+          <input
+            type="password"
+            name="password1"
+            onChange={(e) => setPassword1(e.target.value)}
+          />
+        </div>
+        <div className="input-container">
+          <label>Retapez le mot de passe</label>
+          <input
+            type="password"
+            name="password2"
+            onChange={(e) => setPassword2(e.target.value)}
+          />
+        </div>
+        <input type="button" value="Valider" onClick={newPassword} />
+      </form>
       <input type="button" onClick={handleLogout} value="Déconnexion" />
       <input
         type="button"
