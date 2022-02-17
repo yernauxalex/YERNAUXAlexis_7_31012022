@@ -7,7 +7,7 @@ const userCtrl = require('../controllers/user');
 
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
-router.put('/changepswd/:id', auth, userCtrl.changePassword);
+router.put('/changepswd/:id_user', auth, userCtrl.changePassword);
 router.get('/profile/:id', auth, userCtrl.getProfile);
 router.delete('/delete/:id_user', auth, userCtrl.deleteProfile);
 
