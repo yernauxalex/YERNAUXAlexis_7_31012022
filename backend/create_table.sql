@@ -1,4 +1,6 @@
 
+CREATE TYPE interaction_type AS ENUM('content', 'comment', 'like');
+
 CREATE TABLE users
 (
 	id_user SERIAL,
@@ -7,6 +9,7 @@ CREATE TABLE users
 	lastname VARCHAR(20),
 	passwordh VARCHAR(255),
 	last_interaction CHAR(10),
+	interaction interaction_type,
 	CONSTRAINT users_pk PRIMARY KEY (id_user)
 );
 
