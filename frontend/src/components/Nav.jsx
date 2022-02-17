@@ -30,9 +30,6 @@ function Nav() {
     return (
       <nav className="navbar">
         <StyledNavBar>
-          <StyledLink to="/" className="navbarlist__link">
-            Accueil
-          </StyledLink>
           <StyledLink to="/signup" className="navbarlist__link">
             Inscription
           </StyledLink>
@@ -53,8 +50,11 @@ function Nav() {
         <StyledLink to="/" className="navbarlist__link">
           Accueil
         </StyledLink>
-        <StyledLink to="/profile" className="navbarlist__link">
+        <StyledLink to="/PublicProfile" className="navbarlist__link">
           Profil
+        </StyledLink>
+        <StyledLink to="/profile" className="navbarlist__link">
+          Paramètres
         </StyledLink>
         <StyledLink to="/CreatePost" className="navbarlist__link">
           Partager

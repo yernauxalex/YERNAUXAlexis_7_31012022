@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
+import PublicProfile from './pages/PublicProfile'
 import CreatePost from './pages/CreatePost'
 import Error from './components/Error'
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/publicProfile" element={<PublicProfile />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/createPost" element={<CreatePost />} />
           <Route path="*" element={<Error />} />
