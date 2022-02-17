@@ -39,6 +39,7 @@ function Signin() {
       lastname: data.lastname,
       email: data.email,
       last_interaction: data.last_interaction,
+      interaction_type: data.interaction_type,
     }
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
     navigate('/')

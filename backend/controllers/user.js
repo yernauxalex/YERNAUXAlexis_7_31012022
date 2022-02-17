@@ -44,7 +44,7 @@ exports.login = async (req, res) => {
         const id_user = data[0].id_user;
         const emaildb = data[0].email;
         const passwordh = data[0].passwordh;
-        console.log(id_user, emaildb, passwordh)
+        console.log(id_user, emaildb, passwordh, data[0].interaction)
         if(req.body.email !== emaildb){
             return res.status(401).json({ error: 'Utilisateur non trouvé' });
         }
@@ -62,6 +62,7 @@ exports.login = async (req, res) => {
             firstname: data[0].firstname,
             lastname: data[0].lastname,
             last_interaction: data[0].last_interaction,
+            interaction_type: data[0].interaction,
         });
     }
     catch(error){

@@ -8,7 +8,7 @@ const contentCtrl = require('../controllers/content');
 
 router.post('/:id_user', auth, multer, contentCtrl.createContent);
 router.get('/:id_user', auth, contentCtrl.getRecentContent);
-router.get('/:iduser/:id', auth, contentCtrl.getOneContent);
-router.delete('/:iduser/:id', auth, contentCtrl.deleteContent);
+router.get('/:id_user/:id', auth, contentCtrl.getOneContent);
+router.delete('/:id_user/:id', auth, contentCtrl.deleteContent);
 
 module.exports = router;
