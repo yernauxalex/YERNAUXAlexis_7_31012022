@@ -5,7 +5,7 @@ const db = require('../database');
 exports.createContent = async (req, res, next) => {
     try{
         let media, media_content;
-        if(req.body.media_content != null){
+        if(req.body.media == 'true'){
             media = true;
             media_content = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         }
