@@ -16,7 +16,7 @@ exports.createComment = async (req, res, next) => {
 // Recherche de tous les commentaires d'un contenu
 exports.getAllComment = async (req, res, next) => {
     try{
-        const data = await db.any("SELECT * FROM comments WHERE content_id = $1 ORDER BY date DESC LIMIT 5", req.params.id);
+        const data = await db.any("SELECT * FROM comments WHERE content_id = $1 ORDER BY date DESC, id_comment DESC LIMIT 5", req.params.id);
         let datajson = [];
         for (let index = 0; index < 20; index++) {
             if (data[index] != null){

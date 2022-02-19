@@ -22,7 +22,7 @@ async function fetchNewPostWithMedia(credentials, id_user, token) {
       Authorization: 'Bearer ' + token,
     },
     body: credentials,
-  }).then((data) => console.log(data))
+  }).then((data) => data.json())
 }
 
 function CreatePost() {
@@ -40,17 +40,21 @@ function CreatePost() {
       form.append('file', media_content)
       form.append('media', true)
       console.log(form)
-      await fetchNewPostWithMedia(form, id_user, token)
+      const data = await fetchNewPostWithMedia(form, id_user, token)
+      userInfo.last_interaction = data.last_interaction
+      localStorage.setItem('last', JSON.stringify(userInfo))
       alert('Contenu avec image crée')
     } else {
       console.log(text_content)
-      await fetchNewPost(
+      const data = await fetchNewPost(
         {
           text_content,
         },
         id_user,
         token
       )
+      userInfo.last_interaction = data.last_interaction
+      localStorage.setItem('userInfo', JSON.stringify(userInfo))
       alert('Contenu crée')
     }
   }
