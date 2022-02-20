@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 
 // Bouton pour la création d'un commentaire à ajouter
@@ -7,14 +8,12 @@ const StyledComment = styled.div`
   flex-flow: colum wrap;
   flex-direction: column;
 `
-const StyledName = styled.h4``
-const StyledCommentText = styled.p``
 function Comment(props) {
   return (
-    <StyledComment>
-      <StyledName>Name comment{props.id_author_comment}</StyledName>
-      <StyledCommentText>comment{props.data_comment}</StyledCommentText>
-    </StyledComment>
+    <React.Fragment>
+      <h4>Name comment{props.id_author_comment}</h4>
+      <p>comment{props.data_comment}</p>
+    </React.Fragment>
   )
 }
 

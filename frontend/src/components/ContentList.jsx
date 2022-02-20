@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from './Card'
+import styled from 'styled-components'
 import { Loader } from '../Utils/Loader'
 
 //Appel API
@@ -13,6 +14,14 @@ import { Loader } from '../Utils/Loader'
 //     },
 //   }).then((data) => data.json())
 // }
+
+const StyledGlobalContainer = styled.section`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+`
 
 function ContentList() {
   const [data, setData] = useState([])
@@ -64,11 +73,11 @@ function ContentList() {
       {isDataLoading ? (
         <Loader />
       ) : (
-        <div className="Card">
+        <StyledGlobalContainer>
           {data.map((dataObj) => (
             <Card {...dataObj} />
           ))}
-        </div>
+        </StyledGlobalContainer>
       )}
     </section>
   )

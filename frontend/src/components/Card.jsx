@@ -23,15 +23,38 @@ const StyledContainer = styled.article`
   border-radius: 26px;
   padding: 5%;
   margin: 5%;
-`
-const StyledContent = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const StyledText = styled.p``
-const StyledTitle = styled.h3`
-  font-size: 15px;
+  max-width: 100%;
+  box-shadow: 0px 5px 20px #999;
+  div {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+  h3 {
+    font-size: 15px;
+  }
+  .img-container {
+    height: 504px;
+    position: relative;
+    overflow: hidden;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  @media screen and (min-width: 768px) {
+    width: 520px;
+    padding: 1.5%;
+    margin: 1.5%;
+    .img-container {
+      witdh: 504px;
+    }
+    img {
+      max-width: 100%;
+      position: absolute;
+      left: 33%;
+    }
+  }
 `
 
 function Card(props) {
@@ -45,7 +68,6 @@ function Card(props) {
   const id = props.id_content
   const lsUser = JSON.parse(localStorage.getItem('userInfo'))
   const id_user = lsUser.id_user
-  console.log(data_content)
 
   const newComment = async (e) => {
     e.preventDefault()
@@ -78,14 +100,12 @@ function Card(props) {
           }
         )
         const data = await response.json()
-        console.log(data)
         if (!sessionStorage.getItem('accessToken')) {
           navigate('/signin')
         } else {
           for (let index = 0; index < 5; index++) {
             if (data.datajson[index] != null) {
               commentList.push(data.datajson[index])
-              console.log(data.datajson[index])
             }
           }
           setData(commentList)
@@ -101,11 +121,18 @@ function Card(props) {
 
   return (
     <StyledContainer>
-      <StyledContent>
-        <StyledTitle>Nom auteur {props.id_author}</StyledTitle>
-        <StyledText>content{props.text_content}</StyledText>
+      <div>
+        <h3>Nom auteur {props.id_author}</h3>
+        <p>content{props.text_content}</p>
+        {props.media === true ? (
+          <div className="img-container">
+            <img src={props.media_content} alt="A remplir" />
+          </div>
+        ) : (
+          <br />
+        )}
         {/*<img src={props.src} alt={props.scratl} /> */}
-      </StyledContent>
+      </div>
       <form>
         <div className="input-container">
           <label>Commenter:</label>
@@ -120,11 +147,11 @@ function Card(props) {
       {isDataLoading ? (
         <br />
       ) : (
-        <React.Fragment>
+        <div>
           {data.map((dataObj) => (
             <Comment {...dataObj} />
           ))}
-        </React.Fragment>
+        </div>
       )}
     </StyledContainer>
   )
