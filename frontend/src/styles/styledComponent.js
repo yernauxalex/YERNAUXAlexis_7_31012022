@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import font from './cssValue'
 
@@ -117,4 +118,21 @@ const StyledCard = styled.article`
   }
 `
 
-export { StyledContainer, StyledNavBar, StyledCard }
+const StyledLink = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  padding: 1.5%;
+  @media screen and (min-width: 768px) {
+    padding: 10px;
+  }
+`
+const StyledLinkProfile = styled(Link)``
+
+export {
+  StyledContainer,
+  StyledNavBar,
+  StyledCard,
+  StyledLink,
+  StyledLinkProfile,
+}
