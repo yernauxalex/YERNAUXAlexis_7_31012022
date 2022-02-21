@@ -4,7 +4,7 @@ const db = require('../database');
 exports.createComment = async (req, res, next) => {
     try{
         const data = await db.one("INSERT INTO comments (data_comment, content_id, id_author_comment) VALUES ($1, $2,$3) RETURNING id_comment",[req.body.data_content, req.params.id, req.params.id_user]);
-        const update = await db.any("UPDATE users SET last_interaction = $1, interaction = 'comment' WHERE id_user = $2", [data.id_comment, req.params.id_user]);
+        const update = await db.any("UPDATE users SET last_interaction = $1, interaction = 'comment' WHERE id_user = $2", [data.content_id, req.params.id_user]);
         return res.status(201).json({ message: 'Commentaire ajouté' });
     }
     catch(error){
@@ -16,7 +16,7 @@ exports.createComment = async (req, res, next) => {
 // Recherche de tous les commentaires d'un contenu
 exports.getAllComment = async (req, res, next) => {
     try{
-        const data = await db.any("SELECT * FROM comments WHERE content_id = $1 ORDER BY date DESC, id_comment DESC LIMIT 5", req.params.id);
+        const data = await db.any("SELECT c.id_comment, c.data_comment, c.date, c.content_id, c.id_author_comment, u.firstname, u.lastname FROM comments c, users u WHERE c.content_id = $1 AND c.id_author_comment = u.id_user ORDER BY date DESC, c.id_comment DESC LIMIT 5", req.params.id);
         let datajson = [];
         for (let index = 0; index < 20; index++) {
             if (data[index] != null){
