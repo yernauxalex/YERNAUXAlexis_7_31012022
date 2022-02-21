@@ -93,8 +93,8 @@ exports.changePassword = async (req, res) => {
 // Récupération des informations d'un profil par son id 
 exports.getProfile = async (req, res) => {
     try {
-        const data = await db.any("SELECT * FROM users WHERE id_user = $1",req.params.id);
-        if (req.params.id != data[0].id_user){
+        const data = await db.any("SELECT * FROM users WHERE id_user = $1",req.params.id_user);
+        if (req.params.id_user != data[0].id_user){
             return res.status(401).json({ error: 'Utilisateur non trouvé' });
         }
         res.status(200).json({
@@ -103,6 +103,7 @@ exports.getProfile = async (req, res) => {
             firstname: data[0].firstname,
             lastname: data[0].lastname,
             last_interaction: data[0].last_interaction,
+            interaction_type: data[0].interaction,
         });
     }
     catch (error){
