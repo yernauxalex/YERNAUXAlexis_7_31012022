@@ -42,6 +42,9 @@ const StyledContainer = styled.article`
     max-width: 100%;
     height: auto;
   }
+  textarea {
+    resize: none;
+  }
   @media screen and (min-width: 768px) {
     width: 520px;
     padding: 1.5%;
@@ -122,8 +125,10 @@ function Card(props) {
   return (
     <StyledContainer>
       <div>
-        <h3>Nom auteur {props.id_author}</h3>
-        <p>content{props.text_content}</p>
+        <h3>
+          Post de {props.firstname} {props.lastname}
+        </h3>
+        <p>{props.text_content}</p>
         {props.media === true ? (
           <div className="img-container">
             <img src={props.media_content} alt="A remplir" />
@@ -131,13 +136,14 @@ function Card(props) {
         ) : (
           <br />
         )}
-        {/*<img src={props.src} alt={props.scratl} /> */}
       </div>
       <form>
         <div className="input-container">
           <label>Commenter:</label>
           <textarea
             name="comment"
+            rows="4"
+            cols="10"
             required
             onChange={(e) => setComment(e.target.value)}
           />

@@ -11,7 +11,9 @@ const StyledComment = styled.div`
 function Comment(props) {
   return (
     <React.Fragment>
-      <h4>Name comment{props.id_author_comment}</h4>
+      <h4>
+        Commentaire de {props.firstname} {props.lastname}
+      </h4>
       <p>comment{props.data_comment}</p>
     </React.Fragment>
   )

@@ -21,7 +21,7 @@ function PublicProfile() {
       setType(type)
       try {
         const response = await fetch(
-          `http://localhost:3000/api/${type}/${id_user}/${id}`,
+          `http://localhost:3000/api/content/${id_user}/${id}`,
           {
             method: 'GET',
             headers: {
@@ -50,13 +50,18 @@ function PublicProfile() {
         <p></p>
       </section>
       <section>
-        <h3>Dernière publication {userInfo.last_interaction}</h3>
         {isDataLoading ? (
           <Loader />
         ) : type === 'content' ? (
-          <Card {...data} />
+          <React.Fragment>
+            <h3>Dernière publication {userInfo.last_interaction}</h3>
+            <Card {...data} />
+          </React.Fragment>
         ) : type === 'comment' ? (
-          <Comment {...data} />
+          <React.Fragment>
+            <h3>{userInfo.firstname} a commenté cette publication: </h3>
+            <Card {...data} />
+          </React.Fragment>
         ) : type === 'like' ? (
           <div className="tempDivLike"></div>
         ) : (
