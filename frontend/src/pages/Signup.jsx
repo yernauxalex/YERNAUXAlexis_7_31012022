@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { StyledContainer } from '../styles/styledComponent'
 const emailValidator = require('email-validator')
 const passwordValidator = require('password-validator')
 
@@ -58,7 +59,7 @@ function Signup() {
   }
 
   return (
-    <div>
+    <StyledContainer>
       <h1>Inscription</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -101,7 +102,7 @@ function Signup() {
           <input type="submit" />
         </div>
       </form>
-    </div>
+    </StyledContainer>
   )
 }
 

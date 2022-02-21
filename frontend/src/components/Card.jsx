@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import styled from 'styled-components'
+import { StyledCard } from '../styles/styledComponent'
 import Comment from './Comment'
 
 // Appel API
@@ -15,50 +15,6 @@ async function fetchNewComment(credentials, id_user, id_content, token) {
     body: JSON.stringify(credentials),
   })
 }
-
-const StyledContainer = styled.article`
-  display: flex;
-  flex-flow: column wrap;
-  background-color: #deebff;
-  border-radius: 26px;
-  padding: 5%;
-  margin: 5%;
-  max-width: 100%;
-  box-shadow: 0px 5px 20px #999;
-  div {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-  }
-  h3 {
-    font-size: 15px;
-  }
-  .img-container {
-    height: 504px;
-    position: relative;
-    overflow: hidden;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  textarea {
-    resize: none;
-  }
-  @media screen and (min-width: 768px) {
-    width: 520px;
-    padding: 1.5%;
-    margin: 1.5%;
-    .img-container {
-      witdh: 504px;
-    }
-    img {
-      max-width: 100%;
-      position: absolute;
-      left: 33%;
-    }
-  }
-`
 
 function Card(props) {
   const [data, setData] = useState([])
@@ -123,7 +79,7 @@ function Card(props) {
   }, [])
 
   return (
-    <StyledContainer>
+    <StyledCard>
       <div>
         <h3>
           Post de {props.firstname} {props.lastname}
@@ -159,7 +115,7 @@ function Card(props) {
           ))}
         </div>
       )}
-    </StyledContainer>
+    </StyledCard>
   )
 }
 

@@ -3,49 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { AuthContext } from '../Utils/AuthContext'
 import logo from '../assets/icon.svg'
+import { StyledNavBar } from '../styles/styledComponent'
 
-const StyledNavBar = styled.nav`
-  width: 100%;
-  border-bottom: solid 3px black;
-  #root {
-    width: 100%;
-    margin: 0;
-  }
-  .logo_header {
-    color: black;
-    text-align: right;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  ul {
-    display: flex;
-  }
-  @media screen and (min-width: 768px) {
-    h1 {
-      font-size: 42px;
-    }
-    .logo_header {
-      color: black;
-      text-align: right;
-      padding: 12px;
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
-      flex-direction: row;
-      align-items: center;
-    }
-    ul {
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-      font-size: 20px;
-      margin-top: 0px;
-    }
-  }
-`
 const StyledLink = styled(Link)`
   display: flex;
   flex-direction: row;

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
+import { StyledContainer } from '../styles/styledComponent'
 
 // Appel API
 async function fetchData(credentials) {
@@ -46,7 +47,7 @@ function Signin() {
   }
 
   return (
-    <div className="form">
+    <StyledContainer>
       <h1>Connexion</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -71,7 +72,7 @@ function Signin() {
           <input type="submit" />
         </div>
       </form>
-    </div>
+    </StyledContainer>
   )
 }
 
