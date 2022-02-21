@@ -44,6 +44,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/publicProfile" element={<PublicProfile />} />
+          <Route
+            path="/publicProfile/:id_profile"
+            element={<PublicProfile />}
+          />
           <Route path="/profile" element={<Profile />} />
           <Route path="/createPost" element={<CreatePost />} />
           <Route path="*" element={<Error />} />

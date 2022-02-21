@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import { StyledCard } from '../styles/styledComponent'
+import { StyledCard, StyledLinkProfile } from '../styles/styledComponent'
 import Comment from './Comment'
 
 // Appel API
@@ -82,7 +82,9 @@ function Card(props) {
     <StyledCard>
       <div>
         <h3>
-          Post de {props.firstname} {props.lastname}
+          <StyledLinkProfile to={`/PublicProfile/${props.id_author}`}>
+            Post de {props.firstname} {props.lastname}
+          </StyledLinkProfile>
         </h3>
         <p>{props.text_content}</p>
         {props.media === true ? (

@@ -3,17 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { AuthContext } from '../Utils/AuthContext'
 import logo from '../assets/icon.svg'
-import { StyledNavBar } from '../styles/styledComponent'
-
-const StyledLink = styled(Link)`
-  display: flex;
-  flex-direction: row;
-  text-decoration: none;
-  padding: 1.5%;
-  @media screen and (min-width: 768px) {
-    padding: 10px;
-  }
-`
+import { StyledNavBar, StyledLink } from '../styles/styledComponent'
 
 function Nav() {
   const { authState, setAuthState } = useContext(AuthContext)
@@ -50,7 +40,10 @@ function Nav() {
             <StyledLink to="/" className="navbarlist__link">
               Accueil
             </StyledLink>
-            <StyledLink to="/PublicProfile" className="navbarlist__link">
+            <StyledLink
+              to={`/PublicProfile/${authState.id}`}
+              className="navbarlist__link"
+            >
               Profil
             </StyledLink>
             <StyledLink to="/profile" className="navbarlist__link">
