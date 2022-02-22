@@ -32,7 +32,7 @@ exports.createContent = async (req, res, next) => {
 // Recherche du contenu récent
 exports.getRecentContent = async (req, res, next) => {
     try{
-        const data = await db.any("SELECT c.id_content, c.text_content, c.date, c.media, c.media_content, c.id_author, u.firstname, u.lastname FROM content c , users u WHERE c.id_author = u.id_user ORDER BY date DESC, id_content DESC LIMIT 5");
+        const data = await db.any("SELECT c.id_content, c.text_content, c.date, c.media, c.media_content, c.id_author, u.firstname, u.lastname FROM content c , users u WHERE c.id_author = u.id_user ORDER BY date DESC, id_content DESC LIMIT 10");
         let datajson = [];
         for (let index = 0; index < 10; index++) {
             if (data[index] != null){
