@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import font from './cssValue'
 
+// Signin Signup page
 const StyledContainer = styled.div`
   display: flex;
-  flex-direction: column;
-
+  flex-wrap: wrap;
   h1 {
     font-size: ${font.h1};
     display: flex;
@@ -31,7 +31,7 @@ const StyledContainer = styled.div`
   @media screen and (min-width: 768px) {
   }
 `
-
+// Navbar
 const StyledNavBar = styled.nav`
   width: 100%;
   border-bottom: solid 3px black;
@@ -74,22 +74,49 @@ const StyledNavBar = styled.nav`
     }
   }
 `
+// Conteneur Homepage
+const StyledGlobalContainer = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  row-gap: 5%;
+  column-gap: 1%;
+  @media screen and (min-width: 768px) {
+  }
+`
+// Carte
 const StyledCard = styled.article`
   display: flex;
   flex-flow: column wrap;
+  flex-basis: 0;
   background-color: #deebff;
+  margin-top: 1%;
   border-radius: 26px;
-  padding: 5%;
-  margin: 5%;
+  padding: 1%;
   max-width: 100%;
+  min-width: 520px;
   box-shadow: 0px 5px 20px #999;
-  div {
+  height: fit-content;
+
+  .content-container {
     display: flex;
     flex-direction: column;
     height: fit-content;
+    max-height: 600px;
+    border: 1px solid #000000;
+    border-radius: 26px;
   }
   h3 {
     font-size: 15px;
+    text-align: center;
+    margin: 5px 0 2px 0;
+  }
+  p {
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow: auto;
   }
   .img-container {
     height: 504px;
@@ -100,24 +127,35 @@ const StyledCard = styled.article`
     max-width: 100%;
     height: auto;
   }
+  .new-comment-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
   textarea {
     resize: none;
   }
+  .comment-container {
+    border: 1px solid #000000;
+    border-radius: 26px;
+  }
+  h4 {
+    font-size: 15px;
+    text-align: center;
+    margin: 5px 0 2px 0;
+  }
   @media screen and (min-width: 768px) {
-    width: 520px;
-    padding: 1.5%;
-    margin: 1.5%;
+    max-width: 520px;
     .img-container {
       witdh: 504px;
     }
     img {
       max-width: 100%;
-      position: absolute;
-      left: 33%;
     }
   }
 `
 
+// Lien dans la navbar
 const StyledLink = styled(Link)`
   display: flex;
   flex-direction: row;
@@ -127,9 +165,11 @@ const StyledLink = styled(Link)`
     padding: 10px;
   }
 `
+// Lien vers profil sur les cartes
 const StyledLinkProfile = styled(Link)``
 
 export {
+  StyledGlobalContainer,
   StyledContainer,
   StyledNavBar,
   StyledCard,

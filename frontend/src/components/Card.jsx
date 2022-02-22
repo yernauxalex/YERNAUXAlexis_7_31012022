@@ -80,7 +80,7 @@ function Card(props) {
 
   return (
     <StyledCard>
-      <div>
+      <div className="content-container">
         <h3>
           <StyledLinkProfile to={`/PublicProfile/${props.id_author}`}>
             Post de {props.firstname} {props.lastname}
@@ -91,12 +91,10 @@ function Card(props) {
           <div className="img-container">
             <img src={props.media_content} alt="A remplir" />
           </div>
-        ) : (
-          <br />
-        )}
+        ) : null}
       </div>
       <form>
-        <div className="input-container">
+        <div className="new-comment-container">
           <label>Commenter:</label>
           <textarea
             name="comment"
@@ -111,11 +109,11 @@ function Card(props) {
       {isDataLoading ? (
         <br />
       ) : (
-        <div>
+        <React.Fragment>
           {data.map((dataObj) => (
             <Comment {...dataObj} />
           ))}
-        </div>
+        </React.Fragment>
       )}
     </StyledCard>
   )
