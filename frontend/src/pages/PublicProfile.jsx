@@ -67,7 +67,7 @@ function PublicProfile(props) {
       }
     }
     fetchPost()
-  }, [])
+  }, [id_profile])
   return (
     <div>
       <h1>Espace personnel</h1>
