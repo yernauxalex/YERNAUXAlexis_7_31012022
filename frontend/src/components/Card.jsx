@@ -5,6 +5,7 @@ import { StyledCard, StyledLinkProfile } from '../styles/styledComponent'
 import Comment from './Comment'
 
 // Appel API
+// Ajout d'un nouveau commentaire
 async function fetchNewComment(credentials, id_user, id_content, token) {
   return fetch(`http://localhost:3000/api/comment/${id_content}/${id_user}`, {
     method: 'POST',
@@ -16,6 +17,16 @@ async function fetchNewComment(credentials, id_user, id_content, token) {
   })
 }
 
+// Suppression d'un post par son auteur
+async function fetchDeletePost(id_user, id_content, token) {
+  return fetch(`http://localhost:3000/api/content/${id_user}/${id_content}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  })
+}
+
 function Card(props) {
   const [data, setData] = useState([])
   const [data_content, setComment] = useState('')
@@ -24,9 +35,10 @@ function Card(props) {
   const navigate = useNavigate()
   const commentList = []
   const token = authState.token
+  const id_user = authState.id
   const id = props.id_content
-  const lsUser = JSON.parse(localStorage.getItem('userInfo'))
-  const id_user = lsUser.id_user
+  //const lsUser = JSON.parse(localStorage.getItem('userInfo'))
+  //const id_user = lsUser.id_user
 
   const newComment = async (e) => {
     e.preventDefault()
@@ -43,6 +55,11 @@ function Card(props) {
       )
       alert('Commentaire crée')
     }
+  }
+
+  const deletePost = async (e) => {
+    e.preventDefault()
+    await fetchDeletePost(id_user, id, token)
   }
 
   useEffect(() => {
@@ -91,6 +108,9 @@ function Card(props) {
           <div className="img-container">
             <img src={props.media_content} alt="A remplir" />
           </div>
+        ) : null}
+        {props.id_author === authState.id ? (
+          <input type="button" value="Supprimer" onClick={deletePost} />
         ) : null}
       </div>
       <form>

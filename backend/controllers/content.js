@@ -73,7 +73,10 @@ exports.getOneContent = async (req, res, next) => {
 // Suppression d'un contenu dans la db 
 exports.deleteContent = async (req, res, next) => {
     try{
-        const data = await db.any("DELETE FROM content WHERE id_content = $1", req.params.id);
+        await db.any("DELETE FROM comments WHERE content_id = $1", req.params.id)
+        const data = await db.any("DELETE FROM content WHERE id_content = $1 RETURNING media_content", req.params.id);
+        const filename = data[0].media_content.split('/images/')[1];
+			fs.unlink(`images/${filename}`, () => {});
         return res.status(201).json({ message: 'Contenu supprimé' });
     }
     catch(error){
