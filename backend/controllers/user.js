@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const emailValidator = require('email-validator');
 const passwordValidator = require('password-validator');
 const db = require('../database')
+const fs = require('fs');
 
 // Création du schéma pour le mot de passe
 const schema = new passwordValidator();
@@ -115,11 +116,14 @@ exports.getProfile = async (req, res) => {
 // Suppression d'un utilisateur ainsi que toutes ses publications / commentaires
 exports.deleteProfile = async (req, res) => {
     try {
-        await db.any("DELETE FROM comments WHERE id_author_comment = $1", req.params.id);
-        await db.any("DELETE FROM content WHERE id_author = $1", req.params.id);
-        await db.any("DELETE FROM users WHERE id_user = $1", req.params.id);
+        await db.any("DELETE FROM comments WHERE id_author_comment = $1", req.params.id_user);
+        const data = await db.any("DELETE FROM content WHERE id_author = $1 RETURNING media_content", req.params.id_user);
+        await db.any("DELETE FROM users WHERE id_user = $1", req.params.id_user);
+        for (let index = 0; index < data.length; index++){
+            const filename = data[index].media_content.split('/images/')[1];
+			fs.unlink(`images/${filename}`, () => {});
+        }
         return res.status(201).json({ message: 'Utilisateur supprimé' });
-        
     }
     catch (error) {
         console.log(error)
