@@ -28,6 +28,7 @@ async function fetchDeletePost(id_user, id_content, token) {
 }
 
 function Card(props) {
+  const [refresh, setRefresh] = useState(false)
   const [data, setData] = useState([])
   const [data_content, setComment] = useState('')
   const [isDataLoading, setDataLoading] = useState(false)
@@ -53,6 +54,7 @@ function Card(props) {
         id,
         token
       )
+      setRefresh(true)
       alert('Commentaire crée')
     }
   }
@@ -60,6 +62,8 @@ function Card(props) {
   const deletePost = async (e) => {
     e.preventDefault()
     await fetchDeletePost(id_user, id, token)
+    setRefresh(true)
+    alert('Post supprimé')
   }
 
   useEffect(() => {
@@ -90,10 +94,11 @@ function Card(props) {
         console.log(error)
       } finally {
         setDataLoading(false)
+        setRefresh(false)
       }
     }
     fetchComment()
-  }, [])
+  }, [refresh])
 
   return (
     <StyledCard>
