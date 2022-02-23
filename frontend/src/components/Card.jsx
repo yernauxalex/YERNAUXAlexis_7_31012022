@@ -103,12 +103,12 @@ function Card(props) {
   return (
     <StyledCard>
       <div className="content-container">
-        <h3>
+        <h3 className="card-title">
           <StyledLinkProfile to={`/PublicProfile/${props.id_author}`}>
             Post de {props.firstname} {props.lastname}
           </StyledLinkProfile>
         </h3>
-        <p>{props.text_content}</p>
+        <p className="card-content">{props.text_content}</p>
         {props.media === true ? (
           <div className="img-container">
             <img src={props.media_content} alt="A remplir" />

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
+import { StyledSubContainer } from '../styles/styledComponent'
 const passwordValidator = require('password-validator')
 
 // Création du schéma pour le mot de passe
@@ -85,7 +86,7 @@ function Profile(props) {
     }
   }
   return (
-    <div>
+    <StyledSubContainer>
       <h1>Espace personnel</h1>
       <section>
         <h2>
@@ -120,7 +121,7 @@ function Profile(props) {
         value="Suppression du compte"
         className="deleteAccount"
       />
-    </div>
+    </StyledSubContainer>
   )
 }
 

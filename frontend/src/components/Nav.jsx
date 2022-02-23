@@ -18,15 +18,13 @@ function Nav() {
   return (
     <StyledNavBar>
       <div className="logo_header">
-        <img src={logo} alt="Logo de groupomania" className="gpm-logo" />
+        <img src={logo} alt="Logo de groupomania" />
         <h1>Groupomania</h1>
       </div>
       <ul>
         {!authState.status ? (
           <React.Fragment>
-            <StyledLink to="/signup" className="navbarlist__link">
-              Inscription
-            </StyledLink>
+            <StyledLink to="/signup">Inscription</StyledLink>
             <StyledLink
               to="/signin"
               className="navbarlist__link"
@@ -37,21 +35,15 @@ function Nav() {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <StyledLink to="/" className="navbarlist__link">
-              Accueil
-            </StyledLink>
+            <StyledLink to="/">Accueil</StyledLink>
             <StyledLink
               to={`/PublicProfile/${authState.id}`}
               className="navbarlist__link"
             >
               Profil
             </StyledLink>
-            <StyledLink to="/profile" className="navbarlist__link">
-              Paramètres
-            </StyledLink>
-            <StyledLink to="/CreatePost" className="navbarlist__link">
-              Partager
-            </StyledLink>
+            <StyledLink to="/profile">Paramètres</StyledLink>
+            <StyledLink to="/CreatePost">Partager</StyledLink>
             <input type="button" onClick={handleLogout} value="Déconnexion" />
           </React.Fragment>
         )}

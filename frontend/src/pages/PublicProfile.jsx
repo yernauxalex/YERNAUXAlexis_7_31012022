@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from '../components/Card'
-import Comment from '../components/Comment'
 import { Loader } from '../Utils/Loader'
+import { StyledSubContainer } from '../styles/styledComponent'
 
 function PublicProfile(props) {
   const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
@@ -69,35 +69,31 @@ function PublicProfile(props) {
     fetchPost()
   }, [id_profile])
   return (
-    <div>
+    <StyledSubContainer>
       <h1>Espace personnel</h1>
       <section>
         <h2>
           Bienvenue sur le profil de {dataProfile.firstname}{' '}
           {dataProfile.lastname}
         </h2>
-        <p></p>
-      </section>
-      <section>
+
         {isDataLoading ? (
           <Loader />
         ) : type === 'content' ? (
           <React.Fragment>
-            <h3>Dernière publication {dataProfile.last_interaction}</h3>
+            <p>Dernière publication {dataProfile.last_interaction}</p>
             <Card {...data} />
           </React.Fragment>
         ) : type === 'comment' ? (
           <React.Fragment>
-            <h3>{dataProfile.firstname} a commenté cette publication: </h3>
+            <p>{dataProfile.firstname} a commenté cette publication: </p>
             <Card {...data} />
           </React.Fragment>
-        ) : type === 'like' ? (
-          <div className="tempDivLike"></div>
-        ) : (
+        ) : type === 'like' ? null : (
           <Loader />
         )}
       </section>
-    </div>
+    </StyledSubContainer>
   )
 }
 

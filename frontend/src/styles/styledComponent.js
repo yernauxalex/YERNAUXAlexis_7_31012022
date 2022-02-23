@@ -5,7 +5,8 @@ import font from './cssValue'
 // Signin Signup page
 const StyledContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   h1 {
     font-size: ${font.h1};
     display: flex;
@@ -15,10 +16,12 @@ const StyledContainer = styled.div`
   form {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    width: fit-content;
   }
   .input-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin: 5px;
   }
   .button-container {
@@ -33,7 +36,7 @@ const StyledContainer = styled.div`
 `
 // Navbar
 const StyledNavBar = styled.nav`
-  width: 100%;
+  max-width: 100%;
   border-bottom: solid 3px black;
   #root {
     width: 100%;
@@ -50,6 +53,13 @@ const StyledNavBar = styled.nav`
   }
   ul {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 0px;
+  }
+  img {
+    height: 50px;
+    width: 50px;
   }
   @media screen and (min-width: 768px) {
     h1 {
@@ -67,7 +77,7 @@ const StyledNavBar = styled.nav`
     }
     ul {
       display: flex;
-      justify-content: center;
+
       flex-direction: row;
       font-size: 20px;
       margin-top: 0px;
@@ -78,12 +88,13 @@ const StyledNavBar = styled.nav`
 const StyledGlobalContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 5%;
   column-gap: 1%;
   @media screen and (min-width: 768px) {
+    flex-direction: row;
   }
 `
 // Carte
@@ -96,7 +107,7 @@ const StyledCard = styled.article`
   border-radius: 26px;
   padding: 1%;
   max-width: 100%;
-  min-width: 520px;
+
   box-shadow: 0px 5px 20px #999;
   height: fit-content;
 
@@ -108,12 +119,12 @@ const StyledCard = styled.article`
     border: 1px solid #000000;
     border-radius: 26px;
   }
-  h3 {
+  .card-title {
     font-size: 15px;
     text-align: center;
     margin: 5px 0 2px 0;
   }
-  p {
+  .card-content {
     padding-left: 5px;
     padding-right: 5px;
     overflow: auto;
@@ -126,6 +137,9 @@ const StyledCard = styled.article`
   img {
     max-width: 100%;
     height: auto;
+  }
+  form {
+    margin: 2px 0 5px 0;
   }
   .new-comment-container {
     display: flex;
@@ -146,6 +160,7 @@ const StyledCard = styled.article`
   }
   @media screen and (min-width: 768px) {
     max-width: 520px;
+    min-width: 520px;
     .img-container {
       witdh: 504px;
     }
@@ -154,7 +169,26 @@ const StyledCard = styled.article`
     }
   }
 `
-
+// PublicProfile
+const StyledSubContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    font-size: ${font.h1};
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  h2 {
+    font-size: ${font.h2};
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  p {
+  }
+`
 // Lien dans la navbar
 const StyledLink = styled(Link)`
   display: flex;
@@ -173,6 +207,7 @@ export {
   StyledContainer,
   StyledNavBar,
   StyledCard,
+  StyledSubContainer,
   StyledLink,
   StyledLinkProfile,
 }

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { AuthContext } from './Utils/AuthContext'
 
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
@@ -52,6 +53,7 @@ function App() {
           <Route path="/createPost" element={<CreatePost />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <Footer />
       </AuthContext.Provider>
     </BrowserRouter>
   )

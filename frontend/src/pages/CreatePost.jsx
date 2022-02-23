@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Utils/AuthContext'
+import { StyledSubContainer } from '../styles/styledComponent'
 const FormData = require('form-data')
 
 // Appel API content simple
@@ -59,7 +60,7 @@ function CreatePost() {
     }
   }
   return (
-    <div>
+    <StyledSubContainer>
       <h1>Créer un nouveau contenu</h1>
       <form>
         <div className="input-container">
@@ -82,7 +83,7 @@ function CreatePost() {
         </div>
         <input type="button" value="Nouveau post" onClick={newPost} />
       </form>
-    </div>
+    </StyledSubContainer>
   )
 }
 
