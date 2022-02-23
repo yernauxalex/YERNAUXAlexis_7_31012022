@@ -27,23 +27,28 @@ function Signin() {
       email,
       password,
     })
-    // Création du token dans le sessionStorage et initialisation du context
-    sessionStorage.setItem('accessToken', data.token)
-    setAuthState({
-      id: data.id_user,
-      token: data.token,
-      status: true,
-    })
-    const userInfo = {
-      id_user: data.id_user,
-      firstname: data.firstname,
-      lastname: data.lastname,
-      email: data.email,
-      last_interaction: data.last_interaction,
-      interaction_type: data.interaction_type,
+    console.log(data)
+    if (!data.error) {
+      // Création du token dans le sessionStorage et initialisation du context
+      sessionStorage.setItem('accessToken', data.token)
+      setAuthState({
+        id: data.id_user,
+        token: data.token,
+        status: true,
+      })
+      const userInfo = {
+        id_user: data.id_user,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        last_interaction: data.last_interaction,
+        interaction_type: data.interaction_type,
+      }
+      localStorage.setItem('userInfo', JSON.stringify(userInfo))
+      navigate('/')
+    } else {
+      alert('Email ou mot de passe incorrect')
     }
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    navigate('/')
   }
 
   return (
