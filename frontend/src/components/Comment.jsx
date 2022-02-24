@@ -33,7 +33,12 @@ function Comment(props) {
       </h4>
       <p>comment{props.data_comment}</p>
       {props.id_author_comment === authState.id ? (
-        <input type="button" value="Supprimer" onClick={deleteComment} />
+        <input
+          type="button"
+          value="Supprimer"
+          className="delete-button"
+          onClick={deleteComment}
+        />
       ) : null}
     </div>
   )

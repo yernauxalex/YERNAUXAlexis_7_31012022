@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from './Card'
 import { Loader } from '../Utils/Loader'
-import { StyledGlobalContainer } from '../styles/styledComponent'
+import {
+  StyledGlobalContainer,
+  StyledColumnContainer,
+} from '../styles/styledComponent'
 
 //Appel API
 // async function fetchPost(token) {
@@ -16,11 +19,13 @@ import { StyledGlobalContainer } from '../styles/styledComponent'
 // }
 
 function ContentList() {
-  const [data, setData] = useState([])
+  const [dataL, setDataL] = useState([])
+  const [dataR, setDataR] = useState([])
   const [isDataLoading, setDataLoading] = useState(false)
   const { authState } = useContext(AuthContext)
   const navigate = useNavigate()
-  const postList = []
+  const postListL = []
+  const postListR = []
 
   useEffect(() => {
     async function fetchPost() {
@@ -42,14 +47,17 @@ function ContentList() {
         if (!sessionStorage.getItem('accessToken')) {
           navigate('/signin')
         } else {
-          for (let index = 0; index < 10; index++) {
+          for (let index = 0; index < 10; ) {
             if (data.datajson[index] != null) {
-              postList.push(data.datajson[index])
+              postListL.push(data.datajson[index])
               console.log(data.datajson[index])
+              index++
+              postListR.push(data.datajson[index])
             }
           }
-          console.log(postList)
-          setData(postList)
+          console.log(postListL)
+          setDataL(postListL)
+          setDataR(postListR)
         }
       } catch (error) {
         console.log(error)
@@ -66,9 +74,16 @@ function ContentList() {
         <Loader />
       ) : (
         <StyledGlobalContainer>
-          {data.map((dataObj) => (
-            <Card {...dataObj} />
-          ))}
+          <StyledColumnContainer>
+            {dataL.map((dataObj) => (
+              <Card {...dataObj} />
+            ))}
+          </StyledColumnContainer>
+          <StyledColumnContainer>
+            {dataR.map((dataObj) => (
+              <Card {...dataObj} />
+            ))}
+          </StyledColumnContainer>
         </StyledGlobalContainer>
       )}
     </section>

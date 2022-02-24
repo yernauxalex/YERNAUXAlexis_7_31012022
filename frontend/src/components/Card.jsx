@@ -111,11 +111,18 @@ function Card(props) {
         <p className="card-content">{props.text_content}</p>
         {props.media === true ? (
           <div className="img-container">
-            <img src={props.media_content} alt="A remplir" />
+            <a href={props.media_content} target="_blank" rel="noreferrer">
+              <img src={props.media_content} alt="A remplir" />
+            </a>
           </div>
         ) : null}
         {props.id_author === authState.id ? (
-          <input type="button" value="Supprimer" onClick={deletePost} />
+          <input
+            type="button"
+            value="Supprimer"
+            className="delete-button"
+            onClick={deletePost}
+          />
         ) : null}
       </div>
       <form>
@@ -134,11 +141,11 @@ function Card(props) {
       {isDataLoading ? (
         <br />
       ) : (
-        <React.Fragment>
+        <div className="allcomment-container">
           {data.map((dataObj) => (
             <Comment {...dataObj} />
           ))}
-        </React.Fragment>
+        </div>
       )}
     </StyledCard>
   )

@@ -90,24 +90,28 @@ const StyledGlobalContainer = styled.section`
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  row-gap: 5%;
-  column-gap: 1%;
+  column-gap: 5vw;
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
 `
+// Conteneur column homepage
+const StyledColumnContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2vh;
+`
 // Carte
 const StyledCard = styled.article`
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
   flex-basis: 0;
   background-color: #deebff;
   margin-top: 1%;
   border-radius: 26px;
   padding: 1%;
   max-width: 100%;
-
+  min-width: 80%;
   box-shadow: 0px 5px 20px #999;
   height: fit-content;
 
@@ -115,7 +119,6 @@ const StyledCard = styled.article`
     display: flex;
     flex-direction: column;
     height: fit-content;
-    max-height: 600px;
     border: 1px solid #000000;
     border-radius: 26px;
   }
@@ -127,16 +130,25 @@ const StyledCard = styled.article`
   .card-content {
     padding-left: 5px;
     padding-right: 5px;
+    max-height: 450px;
     overflow: auto;
   }
   .img-container {
-    height: 504px;
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    overflow: auto;
   }
   img {
     max-width: 100%;
     height: auto;
+    border-radius: 26px;
+  }
+  img.expanded {
+    max-width: none;
+  }
+  .delete-button {
+    width: 5vw;
   }
   form {
     margin: 2px 0 5px 0;
@@ -148,6 +160,13 @@ const StyledCard = styled.article`
   }
   textarea {
     resize: none;
+  }
+  .allcomment-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    max-height: 240px;
+    overflow: auto;
   }
   .comment-container {
     border: 1px solid #000000;
@@ -204,6 +223,7 @@ const StyledLinkProfile = styled(Link)``
 
 export {
   StyledGlobalContainer,
+  StyledColumnContainer,
   StyledContainer,
   StyledNavBar,
   StyledCard,
