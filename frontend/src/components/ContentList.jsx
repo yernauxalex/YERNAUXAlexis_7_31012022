@@ -47,7 +47,7 @@ function ContentList() {
         if (!sessionStorage.getItem('accessToken')) {
           navigate('/signin')
         } else {
-          for (let index = 0; index < 10; ) {
+          for (let index = 0; index < 10; index++) {
             if (data.datajson[index] != null) {
               postListL.push(data.datajson[index])
               console.log(data.datajson[index])
