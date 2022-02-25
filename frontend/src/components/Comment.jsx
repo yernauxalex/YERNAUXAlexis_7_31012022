@@ -22,6 +22,7 @@ function Comment(props) {
     e.preventDefault()
     await fetchDeleteComment(id_user, id, token)
     alert('Commentaire supprimé')
+    props.fc(id)
   }
 
   return (

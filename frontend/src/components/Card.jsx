@@ -66,6 +66,15 @@ function Card(props) {
     alert('Post supprimé')
   }
 
+  // Rerender après suppression d'un commentaire
+  function refreshComment(comment_id) {
+    const newData = [...data]
+    const seekId = (comment) => comment.id_comment === comment_id
+    const commentIndex = newData.findIndex(seekId)
+    newData.splice(commentIndex, 1)
+    setData(newData)
+  }
+
   useEffect(() => {
     async function fetchComment() {
       setDataLoading(true)
@@ -143,7 +152,7 @@ function Card(props) {
       ) : (
         <div className="allcomment-container">
           {data.map((dataObj) => (
-            <Comment {...dataObj} />
+            <Comment {...dataObj} fc={refreshComment} />
           ))}
         </div>
       )}
