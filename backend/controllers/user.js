@@ -35,7 +35,7 @@ exports.signup = async (req, res) => {
 };
 
 // Connection à un compte existant
-exports.login = async (req, res) => {
+/*exports.login = async (req, res) => {
     try {
         const password = req.body.password;
         console.log("before sql request - email: ",req.body.email)
@@ -45,6 +45,7 @@ exports.login = async (req, res) => {
         const id_user = data[0].id_user;
         const emaildb = data[0].email;
         const passwordh = data[0].passwordh;
+        const admin = data[0].admin_status;
         console.log(id_user, emaildb, passwordh, data[0].interaction)
         if(req.body.email !== emaildb){
             return res.status(401).json({ error: 'Utilisateur non trouvé' });
@@ -55,7 +56,7 @@ exports.login = async (req, res) => {
         }
         res.status(200).json({
             id_user: id_user,
-            token: jwt.sign({id_user}, 'RANDOM_TOKEN_SECRET', {
+            token: jwt.sign({id_user, admin}, 'RANDOM_TOKEN_SECRET', {
                 expiresIn: '60d',
             }),
             id_user: id_user,
@@ -64,13 +65,52 @@ exports.login = async (req, res) => {
             lastname: data[0].lastname,
             last_interaction: data[0].last_interaction,
             interaction_type: data[0].interaction,
+            admin_status: data[0].admin_status,
         });
     }
     catch(error){
         console.log(error)
         return res.status(500).json({ error })
     }
-};
+};*/
+exports.login = async function login(req,res) {
+    try {
+        const password = req.body.password;
+        console.log("before sql request - email: ",req.body.email)
+        console.log("before sql request - password: ",req.body.password)
+
+        const data = await db.any("SELECT * FROM users WHERE email = $1", req.body.email)
+        const id_user = data[0].id_user;
+        const emaildb = data[0].email;
+        const passwordh = data[0].passwordh;
+        const admin = data[0].admin_status;
+        console.log(id_user, emaildb, passwordh, data[0].interaction)
+        if(req.body.email !== emaildb){
+            throw { code: 401, forClient: {message: 'Utilisateur non trouvé' }};
+        }
+        const match = await bcrypt.compare(req.body.password, passwordh)
+        if(!match){
+            throw { code: 401, forClient: {message: 'Mot de passe incorrect' }};
+        }
+        return res.status(200).json({
+            id_user: id_user,
+            token: jwt.sign({id_user, admin},  'RANDOM_TOKEN_SECRET', {
+                expiresIn: '60d',
+            }),
+            id_user: id_user,
+            email: emaildb,
+            firstname: data[0].firstname,
+            lastname: data[0].lastname,
+            last_interaction: data[0].last_interaction,
+            interaction_type: data[0].interaction,
+            admin_status: data[0].admin_status,
+        });
+    }
+    catch(error){
+        console.log(error)
+        return { code: 500, forClient: {message: 'error'}}
+    }
+}
 
 // Changement de mot de pass
 exports.changePassword = async (req, res) => {

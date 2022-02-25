@@ -35,6 +35,7 @@ function Signin() {
         id: data.id_user,
         token: data.token,
         status: true,
+        admin_status: data.admin_status,
       })
       const userInfo = {
         id_user: data.id_user,

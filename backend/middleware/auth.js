@@ -9,7 +9,12 @@ module.exports = (req, res, next) => {
 		Intid = parseInt(req.params.id_user)
 		req.auth = { userId };
 		if (!Intid || Intid !== userId) {
-			return res.status(401).json({message: 'Accès non autorisé par auth'})
+			if (decodedToken.admin === true) {
+				next();
+			}
+			else{
+				return res.status(401).json({message: 'Accès non autorisé par auth'})
+			}
 		} else {
 			next();
 		}

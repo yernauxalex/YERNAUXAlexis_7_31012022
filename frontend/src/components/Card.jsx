@@ -116,7 +116,7 @@ function Card(props) {
             </a>
           </div>
         ) : null}
-        {props.id_author === authState.id ? (
+        {props.id_author === authState.id || authState.admin_status === true ? (
           <input
             type="button"
             value="Supprimer"

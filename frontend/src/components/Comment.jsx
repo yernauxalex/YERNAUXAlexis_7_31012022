@@ -32,7 +32,8 @@ function Comment(props) {
         </StyledLinkProfile>
       </h4>
       <p>comment{props.data_comment}</p>
-      {props.id_author_comment === authState.id ? (
+      {props.id_author_comment === authState.id ||
+      authState.admin_status === true ? (
         <input
           type="button"
           value="Supprimer"
