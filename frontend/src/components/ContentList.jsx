@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from './Card'
 import { Loader } from '../Utils/Loader'
-import {
-  StyledGlobalContainer,
-  StyledColumnContainer,
-} from '../styles/styledComponent'
+import StyledGlobalContainer from '../styles/styledComponents/StyledGlobalContainer'
+import StyledColumnContainer from '../styles/styledComponents/StyledColumnContainer'
 
 //Appel API
 // async function fetchPost(token) {

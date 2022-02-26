@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import { StyledCard, StyledLinkProfile } from '../styles/styledComponent'
+import StyledCard from '../styles/styledComponents/StyledCard'
+import StyledLinkProfile from '../styles/styledComponents/StyledLinkProfile'
 import Comment from './Comment'
 
 // Appel API

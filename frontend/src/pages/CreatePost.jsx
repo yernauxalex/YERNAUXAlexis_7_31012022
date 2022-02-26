@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import { StyledSubContainer } from '../styles/styledComponent'
+import StyledSubContainer from '../styles/styledComponents/StyledSubContainer'
 const FormData = require('form-data')
 
 // Appel API content simple
@@ -30,6 +31,7 @@ function CreatePost() {
   const [text_content, setText_content] = useState('')
   const [media_content, setMedia_content] = useState('')
   const { authState } = useContext(AuthContext)
+  const navigate = useNavigate()
   const newPost = async (e) => {
     e.preventDefault()
     const token = authState.token
@@ -57,6 +59,7 @@ function CreatePost() {
       userInfo.last_interaction = data.last_interaction
       localStorage.setItem('userInfo', JSON.stringify(userInfo))
       alert('Contenu crée')
+      navigate('/')
     }
   }
   return (

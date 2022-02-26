@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import { StyledContainer } from '../styles/styledComponent'
+import StyledContainer from '../styles/styledComponents/StyledContainer'
 
 // Appel API
 async function fetchData(credentials) {

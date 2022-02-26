@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import { StyledSubContainer } from '../styles/styledComponent'
+import StyledSubContainer from '../styles/styledComponents/StyledSubContainer'
 const passwordValidator = require('password-validator')
 
 // Création du schéma pour le mot de passe

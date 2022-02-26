@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { StyledContainer } from '../styles/styledComponent'
+import StyledContainer from '../styles/styledComponents/StyledContainer'
 const emailValidator = require('email-validator')
 const passwordValidator = require('password-validator')
 

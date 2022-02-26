@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { AuthContext } from '../Utils/AuthContext'
 import logo from '../assets/icon.svg'
-import { StyledNavBar, StyledLink } from '../styles/styledComponent'
+import StyledNavBar from '../styles/styledComponents/StyledNavBar'
+import StyledLink from '../styles/styledComponents/StyledLink'
 
 function Nav() {
   const { authState, setAuthState } = useContext(AuthContext)

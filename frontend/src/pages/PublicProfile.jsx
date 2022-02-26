@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from '../components/Card'
 import { Loader } from '../Utils/Loader'
-import { StyledSubContainer } from '../styles/styledComponent'
+import StyledSubContainer from '../styles/styledComponents/StyledSubContainer'
 
 function PublicProfile(props) {
   const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage

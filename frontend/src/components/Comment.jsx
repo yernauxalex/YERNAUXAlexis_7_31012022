@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { AuthContext } from '../Utils/AuthContext'
-import { StyledLinkProfile } from '../styles/styledComponent'
+import StyledLinkProfile from '../styles/styledComponents/StyledLinkProfile'
 
 // Appel API
 // Suppression d'un commentaire
