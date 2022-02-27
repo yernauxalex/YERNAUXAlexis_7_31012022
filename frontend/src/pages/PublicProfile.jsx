@@ -7,13 +7,15 @@ import StyledSubContainer from '../styles/styledComponents/StyledSubContainer'
 
 function PublicProfile(props) {
   const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
-  const [data, setData] = useState([])
+  // Données concernant la dernière interaction
+  const [dataInteraction, setDataInteraction] = useState([])
+  const [dataError, setDataError] = useState()
+  // Données relatives au profil
   const [dataProfile, setDataProfile] = useState([])
   const [type, setType] = useState('')
   const [isDataLoading, setDataLoading] = useState(false)
   const { authState } = useContext(AuthContext)
   const { id_profile } = useParams()
-  console.log(id_profile)
   useEffect(() => {
     setDataLoading(true)
     const token = authState.token
@@ -58,8 +60,10 @@ function PublicProfile(props) {
           }
         )
         const data = await response.json()
-        console.log(data.data)
-        setData(data.data)
+        if (data.code) {
+          return setDataError(data.code)
+        }
+        setDataInteraction(data.data)
       } catch (error) {
         console.log(error)
       } finally {
@@ -76,18 +80,19 @@ function PublicProfile(props) {
           Bienvenue sur le profil de {dataProfile.firstname}{' '}
           {dataProfile.lastname}
         </h2>
-
         {isDataLoading ? (
           <Loader />
+        ) : dataError ? (
+          <p>Contenu non disponible</p>
         ) : type === 'content' ? (
           <React.Fragment>
             <p>Dernière publication {dataProfile.last_interaction}</p>
-            <Card {...data} />
+            <Card {...dataInteraction} />
           </React.Fragment>
         ) : type === 'comment' ? (
           <React.Fragment>
             <p>{dataProfile.firstname} a commenté cette publication: </p>
-            <Card {...data} />
+            <Card {...dataInteraction} />
           </React.Fragment>
         ) : type === 'like' ? null : (
           <Loader />

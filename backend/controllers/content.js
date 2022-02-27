@@ -32,7 +32,7 @@ exports.getRecentContent = async function (req, res) {
 // Recherhe d'un contenu par son id 
 exports.getOneContent = async function (req, res) {
     const data = await db.any("SELECT c.id_content, c.text_content, c.date, c.media, c.media_content, c.id_author, u.firstname, u.lastname FROM content c, users u WHERE id_content = $1 AND c.id_author = u.id_user LIMIT 1", req.params.id);
-    if (req.params.id != data[0].id_content){
+    if (data[0] == undefined || req.params.id != data[0].id_content){
         throw { code: 401, forClient: { code: 401, message: 'Contenu non trouvé'}}
     }
     const result = {data: data[0]}

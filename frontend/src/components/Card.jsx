@@ -80,25 +80,27 @@ function Card(props) {
     async function fetchComment() {
       setDataLoading(true)
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/comment/${id_user}/${id}`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: 'Bearer ' + token,
-            },
-          }
-        )
-        const data = await response.json()
-        if (!sessionStorage.getItem('accessToken')) {
-          navigate('/signin')
-        } else {
-          for (let index = 0; index < 5; index++) {
-            if (data.datajson[index] != null) {
-              commentList.push(data.datajson[index])
+        if (id !== undefined) {
+          const response = await fetch(
+            `http://localhost:3000/api/comment/${id_user}/${id}`,
+            {
+              method: 'GET',
+              headers: {
+                Authorization: 'Bearer ' + token,
+              },
             }
+          )
+          const data = await response.json()
+          if (!sessionStorage.getItem('accessToken')) {
+            navigate('/signin')
+          } else {
+            for (let index = 0; index < 5; index++) {
+              if (data.datajson[index] != null) {
+                commentList.push(data.datajson[index])
+              }
+            }
+            setData(commentList)
           }
-          setData(commentList)
         }
       } catch (error) {
         console.log(error)
