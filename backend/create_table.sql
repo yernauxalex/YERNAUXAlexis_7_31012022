@@ -8,7 +8,7 @@ CREATE TABLE users
 	firstname VARCHAR(20),
 	lastname VARCHAR(20),
 	passwordh VARCHAR(255),
-	last_interaction CHAR(10),
+	last_interaction CHAR(10) DEFAULT 0,
 	interaction interaction_type,
 	admin_status BOOLEAN DEFAULT false,
 	CONSTRAINT users_pk PRIMARY KEY (id_user)
