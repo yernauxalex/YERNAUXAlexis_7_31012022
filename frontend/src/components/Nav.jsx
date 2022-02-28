@@ -6,7 +6,7 @@ import { AuthContext } from '../Utils/AuthContext'
 import logo from '../assets/icon.svg'
 import StyledNavBar from '../styles/styledComponents/StyledNavBar'
 import StyledLink from '../styles/styledComponents/StyledLink'
-import CreatePost from '../pages/CreatePost'
+import CreatePost from './CreatePost'
 
 const customStyles = {
   content: {
@@ -74,7 +74,6 @@ function Nav() {
               Profil
             </StyledLink>
             <StyledLink to="/profile">Paramètres</StyledLink>
-            <StyledLink to="/CreatePost">Partager</StyledLink>
             <input type="button" onClick={openModal} value="Partager" />
             <Modal
               isOpen={modalIsOpen}

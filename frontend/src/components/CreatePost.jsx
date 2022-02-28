@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
-import StyledSubContainer from '../styles/styledComponents/StyledSubContainer'
+import StyledModalContainer from '../styles/styledComponents/StyledModalContainer'
 const FormData = require('form-data')
 
 // Appel API content simple
@@ -63,15 +63,17 @@ function CreatePost() {
     }
   }
   return (
-    <StyledSubContainer>
+    <StyledModalContainer>
       <h1>Créer un nouveau contenu</h1>
       <form>
         <div className="input-container">
-          <label>Texte</label>
           <textarea
             name="text_content"
             rows="6"
             cols="33"
+            autoFocus
+            placeholder="Créer une plublication"
+            maxLength={3000}
             onChange={(e) => setText_content(e.target.value)}
           />
         </div>
@@ -86,7 +88,7 @@ function CreatePost() {
         </div>
         <input type="button" value="Nouveau post" onClick={newPost} />
       </form>
-    </StyledSubContainer>
+    </StyledModalContainer>
   )
 }
 

@@ -22,10 +22,14 @@ const StyledNavBar = styled.nav`
     flex-direction: row;
     justify-content: center;
     padding-left: 0px;
+    column-gap: 1vw;
   }
   img {
     height: 50px;
     width: 50px;
+  }
+  input {
+    border-radius: 26px;
   }
   @media screen and (min-width: 768px) {
     h1 {
@@ -42,9 +46,6 @@ const StyledNavBar = styled.nav`
       align-items: center;
     }
     ul {
-      display: flex;
-
-      flex-direction: row;
       font-size: 20px;
       margin-top: 0px;
     }
