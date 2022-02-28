@@ -80,9 +80,9 @@ function Nav() {
               onAfterOpen={afterOpenModal}
               onRequestClose={closeModal}
               style={customStyles}
-              contentLabel="Example Modal"
+              contentLabel="Création d'une publication"
             >
-              <CreatePost />
+              <CreatePost fc={closeModal} />
             </Modal>
             <input type="button" onClick={handleLogout} value="Déconnexion" />
           </React.Fragment>

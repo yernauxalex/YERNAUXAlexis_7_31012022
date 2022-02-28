@@ -27,7 +27,7 @@ async function fetchNewPostWithMedia(credentials, id_user, token) {
   }).then((data) => data.json())
 }
 
-function CreatePost() {
+function CreatePost(props) {
   const [text_content, setText_content] = useState('')
   const [media_content, setMedia_content] = useState('')
   const { authState } = useContext(AuthContext)
@@ -46,7 +46,7 @@ function CreatePost() {
       const data = await fetchNewPostWithMedia(form, id_user, token)
       userInfo.last_interaction = data.last_interaction
       localStorage.setItem('last', JSON.stringify(userInfo))
-      alert('Contenu avec image crée')
+      alert('Publication avec une image créée')
     } else {
       console.log(text_content)
       const data = await fetchNewPost(
@@ -58,7 +58,8 @@ function CreatePost() {
       )
       userInfo.last_interaction = data.last_interaction
       localStorage.setItem('userInfo', JSON.stringify(userInfo))
-      alert('Contenu crée')
+      alert('Publication créée')
+      props.fc()
       navigate('/')
     }
   }
@@ -74,6 +75,7 @@ function CreatePost() {
             autoFocus
             placeholder="Créer une plublication"
             maxLength={3000}
+            required
             onChange={(e) => setText_content(e.target.value)}
           />
         </div>
