@@ -42,21 +42,19 @@ function ContentList() {
         )
         const data = await response.json()
         console.log(data)
-        if (!sessionStorage.getItem('accessToken')) {
-          navigate('/signin')
-        } else {
-          for (let index = 0; index < 10; index++) {
-            if (data.datajson[index] != null) {
-              postListL.push(data.datajson[index])
-              console.log(data.datajson[index])
-              index++
-              postListR.push(data.datajson[index])
-            }
+        console.log(authState.status)
+
+        for (let index = 0; index < 10; index++) {
+          if (data.datajson[index] != null) {
+            postListL.push(data.datajson[index])
+            console.log(data.datajson[index])
+            index++
+            postListR.push(data.datajson[index])
           }
-          console.log(postListL)
-          setDataL(postListL)
-          setDataR(postListR)
         }
+        console.log(postListL)
+        setDataL(postListL)
+        setDataR(postListR)
       } catch (error) {
         console.log(error)
       } finally {

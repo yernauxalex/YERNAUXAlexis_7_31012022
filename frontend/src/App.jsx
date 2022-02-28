@@ -12,12 +12,28 @@ import PublicProfile from './pages/PublicProfile'
 import Error from './components/Error'
 
 function App() {
-  // State contenant le token de connection
   const [authState, setAuthState] = useState({
     id: '',
     token: '',
     status: false,
   })
+  useEffect(() => {
+    const log = JSON.parse(localStorage.getItem('userInfo'))
+    if (log != null) {
+      setAuthState({
+        id: log.id_user,
+        token: log.accessToken,
+        status: true,
+      })
+    } else {
+      // State contenant le token de connection
+      setAuthState({
+        id: '',
+        token: '',
+        status: false,
+      })
+    }
+  }, [])
 
   //let navigate = useNavigate()
 

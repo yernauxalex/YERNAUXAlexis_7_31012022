@@ -91,16 +91,13 @@ function Card(props) {
             }
           )
           const data = await response.json()
-          if (!sessionStorage.getItem('accessToken')) {
-            navigate('/signin')
-          } else {
-            for (let index = 0; index < 5; index++) {
-              if (data.datajson[index] != null) {
-                commentList.push(data.datajson[index])
-              }
+
+          for (let index = 0; index < 5; index++) {
+            if (data.datajson[index] != null) {
+              commentList.push(data.datajson[index])
             }
-            setData(commentList)
           }
+          setData(commentList)
         }
       } catch (error) {
         console.log(error)
