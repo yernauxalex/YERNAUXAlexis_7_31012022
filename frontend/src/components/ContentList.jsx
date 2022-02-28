@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from './Card'
 import { Loader } from '../Utils/Loader'
@@ -21,9 +20,26 @@ function ContentList() {
   const [dataR, setDataR] = useState([])
   const [isDataLoading, setDataLoading] = useState(false)
   const { authState } = useContext(AuthContext)
-  const navigate = useNavigate()
   const postListL = []
   const postListR = []
+
+  function refreshCard(content_id) {
+    const newDataL = [...dataL]
+    const newDataR = [...dataR]
+    const seekId = (content) => content.id_content === content_id
+    const contentIndexL = newDataL.findIndex(seekId)
+    const contentIndexR = newDataR.findIndex(seekId)
+    console.log(contentIndexL)
+    console.log(contentIndexR)
+    if (contentIndexL !== -1) {
+      newDataL.splice(contentIndexL, 1)
+      setDataL(newDataL)
+    }
+    if (contentIndexR !== -1) {
+      newDataR.splice(contentIndexR, 1)
+      setDataL(newDataR)
+    }
+  }
 
   useEffect(() => {
     async function fetchPost() {
@@ -52,7 +68,6 @@ function ContentList() {
             postListR.push(data.datajson[index])
           }
         }
-        console.log(postListL)
         setDataL(postListL)
         setDataR(postListR)
       } catch (error) {
@@ -62,7 +77,7 @@ function ContentList() {
       }
     }
     fetchPost()
-  }, [])
+  }, [authState])
 
   return (
     <section>
@@ -72,12 +87,12 @@ function ContentList() {
         <StyledGlobalContainer>
           <StyledColumnContainer>
             {dataL.map((dataObj) => (
-              <Card {...dataObj} />
+              <Card {...dataObj} fc={refreshCard} />
             ))}
           </StyledColumnContainer>
           <StyledColumnContainer>
             {dataR.map((dataObj) => (
-              <Card {...dataObj} />
+              <Card {...dataObj} fc={refreshCard} />
             ))}
           </StyledColumnContainer>
         </StyledGlobalContainer>

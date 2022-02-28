@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Utils/AuthContext'
 import StyledCard from '../styles/styledComponents/StyledCard'
 import StyledLinkProfile from '../styles/styledComponents/StyledLinkProfile'
@@ -34,7 +33,6 @@ function Card(props) {
   const [data_content, setComment] = useState('')
   const [isDataLoading, setDataLoading] = useState(false)
   const { authState } = useContext(AuthContext)
-  const navigate = useNavigate()
   const commentList = []
   const token = authState.token
   const id_user = authState.id
@@ -63,8 +61,8 @@ function Card(props) {
   const deletePost = async (e) => {
     e.preventDefault()
     await fetchDeletePost(id_user, id, token)
-    setRefresh(true)
-    alert('Post supprimé')
+    alert('Publication supprimée')
+    props.fc(id)
   }
 
   // Rerender après suppression d'un commentaire
