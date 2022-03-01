@@ -44,9 +44,7 @@ router.post('/login', async function (req, res) {
     }
 });
 
-// CORS issue no HTTP ok status
-// Pas d'erreur avec l'ancienne implémentation
-router.put('/changepswd/id_user', auth, async function (req,res) {
+router.put('/changepswd/:id_user', auth, async function (req,res) {
     try{
         if (req.body.password1 !== req.body.password2) {
             return res.status(400).json({ message: 'Les mots de passe doivent être identiques' })
