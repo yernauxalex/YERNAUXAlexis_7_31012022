@@ -63,7 +63,8 @@ function Signin() {
             type="email"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            required
+            aria-label="Entrez votre email"
+            aria-required="true"
           />
         </div>
         <div className="input-container">
@@ -72,7 +73,8 @@ function Signin() {
             type="password"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
-            required
+            aria-label="Entrez votre mot de passe"
+            aria-required="true"
           />
         </div>
         <div className="button-container">

@@ -24,6 +24,11 @@ const StyledNavBar = styled.nav`
     padding-left: 0px;
     column-gap: 1vw;
   }
+  li {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+  }
   img {
     height: 50px;
     width: 50px;

@@ -55,26 +55,38 @@ function Nav() {
       <ul>
         {!authState.status ? (
           <React.Fragment>
-            <StyledLink to="/signup">Inscription</StyledLink>
-            <StyledLink
-              to="/signin"
-              className="navbarlist__link"
-              setAuthState={setAuthState}
-            >
-              Connexion
-            </StyledLink>
+            <li>
+              <StyledLink to="/signup">Inscription</StyledLink>
+            </li>
+            <li>
+              <StyledLink
+                to="/signin"
+                className="navbarlist__link"
+                setAuthState={setAuthState}
+              >
+                Connexion
+              </StyledLink>
+            </li>
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <StyledLink to="/">Accueil</StyledLink>
-            <StyledLink
-              to={`/PublicProfile/${authState.id}`}
-              className="navbarlist__link"
-            >
-              Profil
-            </StyledLink>
-            <StyledLink to="/profile">Paramètres</StyledLink>
-            <input type="button" onClick={openModal} value="Partager" />
+            <li>
+              <StyledLink to="/">Accueil</StyledLink>
+            </li>
+            <li>
+              <StyledLink
+                to={`/PublicProfile/${authState.id}`}
+                className="navbarlist__link"
+              >
+                Profil
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/profile">Paramètres</StyledLink>
+            </li>
+            <li>
+              <input type="button" onClick={openModal} value="Partager" />
+            </li>
             <Modal
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}
@@ -84,7 +96,9 @@ function Nav() {
             >
               <CreatePost fc={closeModal} />
             </Modal>
-            <input type="button" onClick={handleLogout} value="Déconnexion" />
+            <li>
+              <input type="button" onClick={handleLogout} value="Déconnexion" />
+            </li>
           </React.Fragment>
         )}
       </ul>

@@ -115,11 +115,13 @@ function Card(props) {
             Post de {props.firstname} {props.lastname}
           </StyledLinkProfile>
         </h3>
-        <p className="card-content">{props.text_content}</p>
+        <p className="card-content" tabindex="0">
+          {props.text_content}
+        </p>
         {props.media === true ? (
           <div className="img-container">
             <a href={props.media_content} target="_blank" rel="noreferrer">
-              <img src={props.media_content} alt="A remplir" />
+              <img src={props.media_content} alt="Media lié à la publication" />
             </a>
           </div>
         ) : null}
@@ -141,6 +143,8 @@ function Card(props) {
             cols="10"
             required
             onChange={(e) => setComment(e.target.value)}
+            aria-label="Espace de commentaire"
+            placeholder="Commentez ici"
           />
         </div>
         <input type="button" value="Envoyer" onClick={newComment} />

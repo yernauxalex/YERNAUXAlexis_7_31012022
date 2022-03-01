@@ -86,6 +86,7 @@ function CreatePost(props) {
             accept="image/*"
             name="media_content"
             onChange={(e) => setMedia_content(e.target.files[0])}
+            aria-label="Sélectionnez l'image à publier"
           />
         </div>
         <input type="button" value="Nouveau post" onClick={newPost} />

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Utils/AuthContext'
 import Card from './Card'
 import { Loader } from '../Utils/Loader'
+import StyledTitleMainPage from '../styles/styledComponents/StyledTitleMainPage'
 import StyledGlobalContainer from '../styles/styledComponents/StyledGlobalContainer'
 import StyledColumnContainer from '../styles/styledComponents/StyledColumnContainer'
 
@@ -84,18 +85,23 @@ function ContentList() {
       {isDataLoading ? (
         <Loader />
       ) : (
-        <StyledGlobalContainer>
-          <StyledColumnContainer>
-            {dataL.map((dataObj) => (
-              <Card {...dataObj} fc={refreshCard} />
-            ))}
-          </StyledColumnContainer>
-          <StyledColumnContainer>
-            {dataR.map((dataObj) => (
-              <Card {...dataObj} fc={refreshCard} />
-            ))}
-          </StyledColumnContainer>
-        </StyledGlobalContainer>
+        <React.Fragment>
+          <StyledTitleMainPage>
+            Dernières publications parues
+          </StyledTitleMainPage>
+          <StyledGlobalContainer>
+            <StyledColumnContainer>
+              {dataL.map((dataObj) => (
+                <Card {...dataObj} fc={refreshCard} />
+              ))}
+            </StyledColumnContainer>
+            <StyledColumnContainer>
+              {dataR.map((dataObj) => (
+                <Card {...dataObj} fc={refreshCard} />
+              ))}
+            </StyledColumnContainer>
+          </StyledGlobalContainer>
+        </React.Fragment>
       )}
     </section>
   )

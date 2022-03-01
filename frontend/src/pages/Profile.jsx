@@ -102,6 +102,8 @@ function Profile(props) {
             type="password"
             name="password1"
             onChange={(e) => setPassword1(e.target.value)}
+            aria-label="Entrez votre nouveau mot de passe"
+            aria-required="true"
           />
         </div>
         <div className="input-container">
@@ -110,6 +112,8 @@ function Profile(props) {
             type="password"
             name="password2"
             onChange={(e) => setPassword2(e.target.value)}
+            aria-label="Entrez à nouveau votre nouveau mot de passe"
+            aria-required="true"
           />
         </div>
         <input type="button" value="Valider" onClick={newPassword} />
