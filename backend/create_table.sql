@@ -38,11 +38,23 @@ CREATE TABLE comments
 	CONSTRAINT comments_fk2 FOREIGN KEY (id_author_comment) REFERENCES users (id_user)
 );
 
+CREATE TABLE likes
+(
+	id_like SERIAL,
+	content_id INTEGER,
+	author_id INTEGER,
+	CONSTRAINT likes_pk PRIMARY KEY (id_like),
+	CONSTRAINT likes_fk1 FOREIGN KEY (content_id) REFERENCES content (id_content),
+	CONSTRAINT likes_fk2 FOREIGN KEY (author_id) REFERENCES users (id_user)
+);
+
 -- DROP TABLE 
 DELETE FROM comments;
 DELETE FROM content;
 DELETE FROM users;
+DELETE FROM likes;
 
+DROP TABLE likes;
 DROP TABLE comments;
 DROP TABLE content;
 DROP TABLE users;
