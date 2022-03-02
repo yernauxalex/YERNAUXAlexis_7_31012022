@@ -71,6 +71,7 @@ function PublicProfile(props) {
       }
     }
     fetchPost()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id_profile])
   return (
     <StyledSubContainer>
@@ -94,7 +95,12 @@ function PublicProfile(props) {
             <p>{dataProfile.firstname} a commenté cette publication: </p>
             <Card {...dataInteraction} />
           </React.Fragment>
-        ) : type === 'like' ? null : (
+        ) : type === 'like' ? (
+          <React.Fragment>
+            <p>{dataProfile.firstname} a aimé cette publication: </p>
+            <Card {...dataInteraction} />
+          </React.Fragment>
+        ) : (
           <Loader />
         )}
       </section>
