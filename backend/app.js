@@ -13,6 +13,7 @@ const db = require('./database')
 const userRoutes = require ('./routes/user');
 const contentRoutes = require ('./routes/content');
 const commentRoutes = require ('./routes/comment');
+const likeRoutes = require ('./routes/like');
 
 // PostgreSQL
 //const db = pgp(process.env.POSTGRESQL);
@@ -50,5 +51,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/comment', commentRoutes);
+app.use('/api/like', likeRoutes);
 
 module.exports = app;
