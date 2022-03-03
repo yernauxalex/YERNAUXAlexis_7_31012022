@@ -37,30 +37,36 @@ function CreatePost(props) {
     const token = authState.token
     const id_user = authState.id
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorag
-    if (media_content) {
-      const form = new FormData()
-      form.append('text_content', text_content)
-      form.append('file', media_content)
-      form.append('media', true)
-      console.log(form)
-      const data = await fetchNewPostWithMedia(form, id_user, token)
-      userInfo.last_interaction = data.last_interaction
-      localStorage.setItem('last', JSON.stringify(userInfo))
-      alert('Publication avec une image créée')
+    if (media_content || text_content) {
+      if (media_content) {
+        const form = new FormData()
+        form.append('text_content', text_content)
+        form.append('file', media_content)
+        form.append('media', true)
+        console.log(form)
+        const data = await fetchNewPostWithMedia(form, id_user, token)
+        userInfo.last_interaction = data.last_interaction
+        localStorage.setItem('last', JSON.stringify(userInfo))
+        alert('Publication avec une image créée')
+        props.fc()
+        navigate('/')
+      } else {
+        console.log(text_content)
+        const data = await fetchNewPost(
+          {
+            text_content,
+          },
+          id_user,
+          token
+        )
+        userInfo.last_interaction = data.last_interaction
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
+        alert('Publication créée')
+        props.fc()
+        navigate('/')
+      }
     } else {
-      console.log(text_content)
-      const data = await fetchNewPost(
-        {
-          text_content,
-        },
-        id_user,
-        token
-      )
-      userInfo.last_interaction = data.last_interaction
-      localStorage.setItem('userInfo', JSON.stringify(userInfo))
-      alert('Publication créée')
-      props.fc()
-      navigate('/')
+      alert('Vous ne pouvez pas poster une publication vide')
     }
   }
   return (
