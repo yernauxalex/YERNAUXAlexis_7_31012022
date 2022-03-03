@@ -3,6 +3,7 @@ import { AuthContext } from '../Utils/AuthContext'
 import StyledCard from '../styles/styledComponents/StyledCard'
 import StyledLinkProfile from '../styles/styledComponents/StyledLinkProfile'
 import Comment from './Comment'
+import LikeButton from './LikeButton'
 
 // Appel API
 // Ajout d'un nouveau commentaire
@@ -105,6 +106,7 @@ function Card(props) {
       }
     }
     fetchComment()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   return (
@@ -125,14 +127,18 @@ function Card(props) {
             </a>
           </div>
         ) : null}
-        {props.id_author === authState.id || authState.admin_status === true ? (
-          <input
-            type="button"
-            value="Supprimer"
-            className="delete-button"
-            onClick={deletePost}
-          />
-        ) : null}
+        <div className="button-container">
+          {props.id_author === authState.id ||
+          authState.admin_status === true ? (
+            <input
+              type="button"
+              value="Supprimer"
+              className="delete-button"
+              onClick={deletePost}
+            />
+          ) : null}
+          <LikeButton id_content={id} />
+        </div>
       </div>
       <form>
         <div className="new-comment-container">
