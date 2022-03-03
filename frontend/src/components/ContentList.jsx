@@ -38,7 +38,7 @@ function ContentList() {
     }
     if (contentIndexR !== -1) {
       newDataR.splice(contentIndexR, 1)
-      setDataL(newDataR)
+      setDataR(newDataR)
     }
   }
 
