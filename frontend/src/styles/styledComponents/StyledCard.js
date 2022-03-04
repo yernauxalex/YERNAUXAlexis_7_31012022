@@ -1,11 +1,13 @@
 import styled from 'styled-components'
+import colors from '../colors'
+import font from '../cssValue'
 
 // Carte
 const StyledCard = styled.article`
   display: flex;
   flex-flow: column;
   flex-basis: 0;
-  background-color: #deebff;
+  background-color: ${colors.primary};
   margin-top: 1%;
   border-radius: 26px;
   padding: 1%;
@@ -20,11 +22,16 @@ const StyledCard = styled.article`
     height: fit-content;
     border: 1px solid #000000;
     border-radius: 26px;
+    color: ${colors.textCard};
   }
   .card-title {
-    font-size: 15px;
+    font-size: ${font.h2};
     text-align: center;
     margin: 5px 0 2px 0;
+  }
+  a {
+    color: ${colors.textCard};
+    text-decoration: none;
   }
   .card-content {
     padding-left: 5px;
@@ -46,12 +53,25 @@ const StyledCard = styled.article`
   img.expanded {
     max-width: none;
   }
+  .button-container {
+    display: flex;
+    column-gap: 1vw;
+    justify-content: flex-end;
+    padding: 0 0.5vw 0.5vw 0;
+  }
   .delete-button {
     width: 5vw;
     min-width: fit-content;
+    border-radius: 26px;
+  }
+  .like-button {
+    width: 5vw;
+    min-width: fit-content;
+    border-radius: 26px;
   }
   form {
     margin: 2px 0 5px 0;
+    color: ${colors.textCard};
   }
   .new-comment-container {
     display: flex;
@@ -59,7 +79,12 @@ const StyledCard = styled.article`
     height: fit-content;
   }
   textarea {
+    background-color: ${colors.secondary};
+    color: ${colors.textCard};
     resize: none;
+  }
+  textarea::placeholder {
+    color: ${colors.textCard};
   }
   .allcomment-container {
     display: flex;
@@ -71,9 +96,18 @@ const StyledCard = styled.article`
   .comment-container {
     border: 1px solid #000000;
     border-radius: 26px;
+    color: ${colors.textCard};
   }
-  h4 {
-    font-size: 15px;
+  p {
+    padding: 0 1vw 0 1vw;
+  }
+  .comment-button {
+    width: 5vw;
+    min-width: fit-content;
+    border-radius: 26px;
+  }
+  h3 {
+    font-size: ${font.h3};
     text-align: center;
     margin: 5px 0 2px 0;
   }

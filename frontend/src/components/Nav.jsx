@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 
 import { AuthContext } from '../Utils/AuthContext'
-import logo from '../assets/icon.svg'
+import logo from '../assets/icon-left-font-monochrome-white.svg'
 import StyledNavBar from '../styles/styledComponents/StyledNavBar'
 import StyledLink from '../styles/styledComponents/StyledLink'
 import CreatePost from './CreatePost'
@@ -50,7 +50,6 @@ function Nav() {
     <StyledNavBar>
       <div className="logo_header">
         <img src={logo} alt="Logo de groupomania" />
-        <h1>Groupomania</h1>
       </div>
       <ul>
         {!authState.status ? (

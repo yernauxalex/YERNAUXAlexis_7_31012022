@@ -1,10 +1,15 @@
 // Charte de couleur à définir
 
 const colors = {
-    primary: '#3289a8',
-    secondary: '#13272e',
-    backgroundPrimary: '#9bacb3',
-    backgroundSecondary: '#484d4f',
+  primary: '#4b749d', //Card
+  secondary: '#5986b3', // form textarea
+  backgroundPrimary: '#273c51', //Navbar
+  backgroundSecondary: '#ffffff',
+  text: '#ffffff',
+  textCard: '#ebdfdf',
+  button: 'efefef',
+  buttonLiked: '#5fb359',
+  buttonLike: 'ffffff',
 }
 
 export default colors

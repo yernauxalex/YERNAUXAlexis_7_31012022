@@ -1,7 +1,7 @@
 const font = {
-  h1: '32px',
-  h2: '26px',
-  h3: '22px',
+  h1: '26px',
+  h2: '18px',
+  h3: '16px',
 }
 
 export default font

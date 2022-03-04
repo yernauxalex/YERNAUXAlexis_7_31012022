@@ -112,11 +112,11 @@ function Card(props) {
   return (
     <StyledCard>
       <div className="content-container">
-        <h3 className="card-title">
+        <h2 className="card-title">
           <StyledLinkProfile to={`/PublicProfile/${props.id_author}`}>
-            Post de {props.firstname} {props.lastname}
+            Par {props.firstname} {props.lastname}
           </StyledLinkProfile>
-        </h3>
+        </h2>
         <p className="card-content" tabindex="0">
           {props.text_content}
         </p>
@@ -153,7 +153,12 @@ function Card(props) {
             placeholder="Commentez ici"
           />
         </div>
-        <input type="button" value="Envoyer" onClick={newComment} />
+        <input
+          type="button"
+          value="Envoyer"
+          className="comment-button"
+          onClick={newComment}
+        />
       </form>
       {isDataLoading ? (
         <br />

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import colors from '../colors'
 
 // Conteneur Homepage
 const StyledGlobalContainer = styled.section`
@@ -7,6 +8,7 @@ const StyledGlobalContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   column-gap: 5vw;
+  background-color: ${colors.backgroundSecondary};
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }

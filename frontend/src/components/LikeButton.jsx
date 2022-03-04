@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Utils/AuthContext'
+import colors from '../styles/colors'
 
 // Appel API
 async function fetchAllLike(id_content, token) {
@@ -35,6 +36,15 @@ async function fetchRemoveLike(id_content, id_user, token) {
   )
 }
 
+const likeButton = {
+  like: {
+    backgroundColor: colors.buttonLike,
+  },
+  liked: {
+    backgroundColor: colors.buttonLiked,
+  },
+}
+
 function LikeButton(props) {
   const { authState } = useContext(AuthContext)
   const [like, setLike] = useState(0)
@@ -47,14 +57,12 @@ function LikeButton(props) {
     e.preventDefault()
     if (liked === true) {
       await fetchRemoveLike(id_content, id_user, token)
-      alert('post disliké')
       const tempLike = like - 1
       setLike(tempLike)
       setLiked(false)
     }
     if (liked === false) {
       await fetchNewLike(id_content, id_user, token)
-      alert('post liké')
       const tempLike = like + 1
       setLike(tempLike)
       setLiked(true)
@@ -82,12 +90,27 @@ function LikeButton(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <input
-      type="button"
-      value={`Like:${like}`}
-      className="like-button"
-      onClick={updateLike}
-    />
+    <React.Fragment>
+      {liked ? (
+        <input
+          type="button"
+          value={`Liked:${like}`}
+          className="like-button"
+          style={likeButton.liked}
+          onClick={updateLike}
+          aria-label="Bouton j'aime, vous avez aimé ce contenu"
+        />
+      ) : (
+        <input
+          type="button"
+          value={`Like:${like}`}
+          className="like-button"
+          style={likeButton.like}
+          onClick={updateLike}
+          aria-label="Bouton j'aime, vous n'avez pas aimé ce contenu"
+        />
+      )}
+    </React.Fragment>
   )
 }
 

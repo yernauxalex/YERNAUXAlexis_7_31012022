@@ -1,9 +1,11 @@
 import styled from 'styled-components'
+import colors from '../colors'
 
 // Navbar
 const StyledNavBar = styled.nav`
   max-width: 100%;
   border-bottom: solid 3px black;
+  background-color: ${colors.backgroundPrimary};
   #root {
     width: 100%;
     margin: 0;
@@ -29,9 +31,12 @@ const StyledNavBar = styled.nav`
     flex-direction: row;
     text-decoration: none;
   }
+  a {
+    color: ${colors.text};
+  }
   img {
-    height: 50px;
-    width: 50px;
+    height: 10vh;
+    width: 30vw;
   }
   input {
     border-radius: 26px;
@@ -39,11 +44,11 @@ const StyledNavBar = styled.nav`
   @media screen and (min-width: 768px) {
     h1 {
       font-size: 42px;
+      color: ${colors.text};
     }
     .logo_header {
       color: black;
       text-align: right;
-      padding: 12px;
       display: flex;
       flex-wrap: nowrap;
       justify-content: center;

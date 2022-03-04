@@ -27,12 +27,12 @@ function Comment(props) {
 
   return (
     <div className="comment-container">
-      <h4>
+      <h3>
         <StyledLinkProfile to={`/PublicProfile/${props.id_author_comment}`}>
           Commentaire de {props.firstname} {props.lastname}
         </StyledLinkProfile>
-      </h4>
-      <p>comment{props.data_comment}</p>
+      </h3>
+      <p>{props.data_comment}</p>
       {props.id_author_comment === authState.id ||
       authState.admin_status === true ? (
         <input
