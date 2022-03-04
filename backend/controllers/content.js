@@ -41,6 +41,7 @@ exports.getOneContent = async function (req, res) {
 
 // Suppression d'un contenu dans la db 
 exports.deleteContent = async function (req, res, next) {
+    await db.any("DELETE FROM likes WHERE content_id = $1", req.params.id)
     await db.any("DELETE FROM comments WHERE content_id = $1", req.params.id)
     const data = await db.any("DELETE FROM content WHERE id_content = $1 RETURNING media_content", req.params.id);
     if(data[0].media_content !== null){
