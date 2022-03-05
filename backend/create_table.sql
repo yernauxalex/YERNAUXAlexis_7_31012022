@@ -48,14 +48,15 @@ CREATE TABLE likes
 	CONSTRAINT likes_fk2 FOREIGN KEY (author_id) REFERENCES users (id_user)
 );
 
--- DROP TABLE 
+-- DROP TABLE
+DELETE FROM likes;
 DELETE FROM comments;
 DELETE FROM content;
 DELETE FROM users;
-DELETE FROM likes;
 
 DROP TABLE likes;
 DROP TABLE comments;
 DROP TABLE content;
 DROP TABLE users;
 
+DROP TYPE interaction_type;
