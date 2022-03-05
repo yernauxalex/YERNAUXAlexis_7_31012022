@@ -66,7 +66,9 @@ function ContentList() {
             postListL.push(data.datajson[index])
             console.log(data.datajson[index])
             index++
-            postListR.push(data.datajson[index])
+            if (data.datajson[index] != null) {
+              postListR.push(data.datajson[index])
+            }
           }
         }
         setDataL(postListL)
