@@ -7,6 +7,7 @@ import logo from '../assets/icon-left-font-monochrome-white.svg'
 import StyledNavBar from '../styles/styledComponents/StyledNavBar'
 import StyledLink from '../styles/styledComponents/StyledLink'
 import CreatePost from './CreatePost'
+import colors from '../styles/colors'
 
 const customStyles = {
   content: {
@@ -16,6 +17,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    borderRadius: '26px',
+    backgroundColor: colors.primary,
   },
 }
 
