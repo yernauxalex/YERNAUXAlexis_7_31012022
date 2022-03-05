@@ -9,7 +9,7 @@ const colors = {
   textCard: '#ebdfdf',
   button: 'efefef',
   buttonLiked: '#5fb359',
-  buttonLike: 'ffffff',
+  buttonLike: '#efefef',
 }
 
 export default colors
