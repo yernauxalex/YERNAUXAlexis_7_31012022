@@ -27,7 +27,6 @@ function Signin() {
       email,
       password,
     })
-    console.log(data)
     if (!data.error) {
       // Création du token dans le sessionStorage et initialisation du context
       sessionStorage.setItem('accessToken', data.token)

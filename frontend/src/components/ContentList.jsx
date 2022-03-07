@@ -30,8 +30,6 @@ function ContentList() {
     const seekId = (content) => content.id_content === content_id
     const contentIndexL = newDataL.findIndex(seekId)
     const contentIndexR = newDataR.findIndex(seekId)
-    console.log(contentIndexL)
-    console.log(contentIndexR)
     if (contentIndexL !== -1) {
       newDataL.splice(contentIndexL, 1)
       setDataL(newDataL)
@@ -58,13 +56,9 @@ function ContentList() {
           }
         )
         const data = await response.json()
-        console.log(data)
-        console.log(authState.status)
-
         for (let index = 0; index < 10; index++) {
           if (data.datajson[index] != null) {
             postListL.push(data.datajson[index])
-            console.log(data.datajson[index])
             index++
             if (data.datajson[index] != null) {
               postListR.push(data.datajson[index])
@@ -80,6 +74,7 @@ function ContentList() {
       }
     }
     fetchPost()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authState])
 
   return (

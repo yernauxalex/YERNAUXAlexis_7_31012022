@@ -6,7 +6,6 @@ import { Loader } from '../Utils/Loader'
 import StyledSubContainer from '../styles/styledComponents/StyledSubContainer'
 
 function PublicProfile(props) {
-  const userInfo = JSON.parse(localStorage.getItem('userInfo')) // appel API getProfile ou localstorage
   // Données concernant la dernière interaction
   const [dataInteraction, setDataInteraction] = useState([])
   const [dataError, setDataError] = useState()

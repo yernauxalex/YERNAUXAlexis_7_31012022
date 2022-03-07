@@ -43,7 +43,6 @@ function CreatePost(props) {
         form.append('text_content', text_content)
         form.append('file', media_content)
         form.append('media', true)
-        console.log(form)
         const data = await fetchNewPostWithMedia(form, id_user, token)
         userInfo.last_interaction = data.last_interaction
         localStorage.setItem('last', JSON.stringify(userInfo))
@@ -51,7 +50,6 @@ function CreatePost(props) {
         props.fc()
         navigate('/')
       } else {
-        console.log(text_content)
         const data = await fetchNewPost(
           {
             text_content,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthContext } from './Utils/AuthContext'
 
 import Header from './components/Header'
@@ -34,23 +34,6 @@ function App() {
       })
     }
   }, [])
-
-  //let navigate = useNavigate()
-
-  // if (!authState) {
-  //   return (
-  //     <BrowserRouter>
-  //       <Header />
-  //       <Routes>
-  //         <Route path="/" element={<Home />} />
-  //         <Route path="/signup" element={<Signup />} />
-  //         <Route path="/signin" element={<Signin />} setAuthState={authState} />
-  //         <Route path="/createPost" element={<CreatePost />} />
-  //         <Route path="*" element={<Error />} />
-  //       </Routes>
-  //     </BrowserRouter>
-  //   )
-  // }
 
   return (
     <BrowserRouter>

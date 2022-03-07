@@ -5,10 +5,6 @@ const auth = require('../middleware/auth');
 
 const commentCtrl = require('../controllers/comment');
 
-//router.post('/:id/:id_user', auth, commentCtrl.createComment);
-//router.get('/:id_user/:id', auth, commentCtrl.getAllComment);
-//router.get('/:id/:idcomment', auth, commentCtrl.getOneComment);
-
 router.post('/:id/:id_user', auth, async function (req,res) {
     try{
         await commentCtrl.createComment(req, res)
