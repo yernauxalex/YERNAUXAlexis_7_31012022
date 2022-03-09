@@ -7,16 +7,6 @@ import StyledTitleMainPage from '../styles/styledComponents/StyledTitleMainPage'
 import StyledGlobalContainer from '../styles/styledComponents/StyledGlobalContainer'
 import StyledColumnContainer from '../styles/styledComponents/StyledColumnContainer'
 
-//Appel API
-// async function fetchPost(token) {
-//   return fetch('http://localhost:3000/api/content/', {
-//     method: 'GET',
-//     headers: {
-//       Authorization: 'Bearer ' + token,
-//     },
-//   }).then((data) => data.json())
-// }
-
 function ContentList() {
   const [dataL, setDataL] = useState([])
   const [dataR, setDataR] = useState([])

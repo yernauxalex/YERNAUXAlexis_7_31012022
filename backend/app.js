@@ -2,9 +2,6 @@
 const express = require('express');
 const expressSanitizer = require('express-sanitizer');
 const app = express();
-//const pgp = require('pg-promise')();
-// const dotenv = require("dotenv");
-// dotenv.config();
 const path = require('path');
 const db = require('./database')
 
@@ -14,13 +11,6 @@ const userRoutes = require ('./routes/user');
 const contentRoutes = require ('./routes/content');
 const commentRoutes = require ('./routes/comment');
 const likeRoutes = require ('./routes/like');
-
-// PostgreSQL
-//const db = pgp(process.env.POSTGRESQL);
-//db.connect()
-//.then(() => console.log('Connected to ElephantSQL'))
-//.catch(() => console.log('Connection failed'));
-
 
 // CORS
 app.use((req, res, next) => {
