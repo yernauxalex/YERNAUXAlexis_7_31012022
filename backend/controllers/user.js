@@ -30,6 +30,9 @@ exports.login = async function (req, res) {
     console.log("before sql request - password: ", req.body.password)
 
     const data = await db.any("SELECT * FROM users WHERE email = $1", req.body.email)
+    if (data[0] === undefined){
+        throw { code: 401, forClient: { error: 401, message: "L'utilisateur n'existe pas" } };
+    }
     const id_user = data[0].id_user;
     const emaildb = data[0].email;
     const passwordh = data[0].passwordh;
