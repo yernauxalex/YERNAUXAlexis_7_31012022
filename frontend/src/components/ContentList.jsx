@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Utils/AuthContext'
+import { ModalContext } from '../Utils/ModalContext'
 import Card from './Card'
 import { Loader } from '../Utils/Loader'
 import StyledTitleMainPage from '../styles/styledComponents/StyledTitleMainPage'
@@ -21,6 +22,7 @@ function ContentList() {
   const [dataR, setDataR] = useState([])
   const [isDataLoading, setDataLoading] = useState(false)
   const { authState } = useContext(AuthContext)
+  const { modalState } = useContext(ModalContext)
   const postListL = []
   const postListR = []
 
@@ -75,7 +77,7 @@ function ContentList() {
     }
     fetchPost()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authState])
+  }, [authState, modalState])
 
   return (
     <section>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthContext } from './Utils/AuthContext'
+import { ModalContext } from './Utils/ModalContext'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -17,6 +18,7 @@ function App() {
     token: '',
     status: false,
   })
+  const [modalState, setModalState] = useState(false)
   useEffect(() => {
     const log = JSON.parse(localStorage.getItem('userInfo'))
     if (log != null) {
@@ -38,20 +40,22 @@ function App() {
   return (
     <BrowserRouter>
       <AuthContext.Provider value={{ authState, setAuthState }}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/publicProfile" element={<PublicProfile />} />
-          <Route
-            path="/publicProfile/:id_profile"
-            element={<PublicProfile />}
-          />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        <Footer />
+        <ModalContext.Provider value={{ modalState, setModalState }}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/publicProfile" element={<PublicProfile />} />
+            <Route
+              path="/publicProfile/:id_profile"
+              element={<PublicProfile />}
+            />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+          <Footer />
+        </ModalContext.Provider>
       </AuthContext.Provider>
     </BrowserRouter>
   )

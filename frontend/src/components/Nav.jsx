@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 
 import { AuthContext } from '../Utils/AuthContext'
+import { ModalContext } from '../Utils/ModalContext'
 import logo from '../assets/icon-left-font-monochrome-white.svg'
 import StyledNavBar from '../styles/styledComponents/StyledNavBar'
 import StyledLink from '../styles/styledComponents/StyledLink'
@@ -24,8 +25,9 @@ const customStyles = {
 
 function Nav() {
   const { authState, setAuthState } = useContext(AuthContext)
+  const { setModalState } = useContext(ModalContext)
   let navigate = useNavigate()
-
+  setModalState(false)
   const handleLogout = () => {
     setAuthState({ id: '', token: '', status: false })
     localStorage.removeItem('userInfo')
@@ -45,6 +47,7 @@ function Nav() {
   function afterOpenModal() {}
 
   function closeModal() {
+    setModalState(true)
     setIsOpen(false)
   }
   return (
