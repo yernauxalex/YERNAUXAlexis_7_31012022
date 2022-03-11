@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 
 const commentCtrl = require('../controllers/comment');
 
-router.post('/:id/:id_user', auth, async function (req,res) {
+router.post('/newcomment/:id/:id_user', auth, async function (req,res) {
     try{
         await commentCtrl.createComment(req, res)
         return res.status(201).json({ message: 'Commentaire ajouté' });
@@ -16,7 +16,7 @@ router.post('/:id/:id_user', auth, async function (req,res) {
     }
 })
 
-router.get('/:id_user/:id', auth, async function (req,res) {
+router.get('/getallcomment/:id_user/:id', auth, async function (req,res) {
     try {
         const data = await commentCtrl.getAllComment(req,res)
         let datajson = [];
@@ -33,7 +33,7 @@ router.get('/:id_user/:id', auth, async function (req,res) {
     }
 })
 
-router.get('/:id/:idcomment', auth, async function (req, res) {
+router.get('/getcomment/:id/:idcomment', auth, async function (req, res) {
     try{
         const data = await commentCtrl.getOneComment(req,res)
         if (req.params.id != data[0].id_content || req.params.idcomment != data[0].id_comment){
@@ -46,7 +46,7 @@ router.get('/:id/:idcomment', auth, async function (req, res) {
         res.status(error.code).json(error.forClient)
     }
 })
-router.delete('/:id_user/:id', auth, async function (req,res) {
+router.delete('/delete/:id_user/:id', auth, async function (req,res) {
     try{
         await commentCtrl.deleteComment(req,res)
         return res.status(201).json({ message: 'Commentaire supprimé' });

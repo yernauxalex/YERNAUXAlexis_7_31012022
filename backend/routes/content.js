@@ -6,7 +6,7 @@ const multer = require('../middleware/multer-config');
 
 const contentCtrl = require('../controllers/content');
 
-router.post('/:id_user', auth, multer, async function(req,res) {
+router.post('/newpost/:id_user', auth, multer, async function(req,res) {
     try{
         const crtlResult = await contentCtrl.createContent(req,res)
         return res.status(201).json({ message: 'Contenu ajouté' , crtlResult});
@@ -16,7 +16,7 @@ router.post('/:id_user', auth, multer, async function(req,res) {
     }
 });
 
-router.get('/:id_user', auth, async function (req,res) {
+router.get('/getrecentcontent/:id_user', auth, async function (req,res) {
     try  {
         const data = await contentCtrl.getRecentContent(req,res)
         let datajson = [];
@@ -32,7 +32,7 @@ router.get('/:id_user', auth, async function (req,res) {
     }
 });
 
-router.get('/:id_user/:id', async function (req, res) {
+router.get('/getcontent/:id_user/:id', async function (req, res) {
     try{
         const ctrlResult = await contentCtrl.getOneContent(req,res)
         return res.status(200).json(ctrlResult)
@@ -42,7 +42,7 @@ router.get('/:id_user/:id', async function (req, res) {
     }
 });
 
-router.delete('/:id_user/:id', auth, async function (req,res) {
+router.delete('/delete/:id_user/:id_content', auth, async function (req,res) {
     try{
         await contentCtrl.deleteContent(req,res)
         return res.status(201).json({ message: 'Contenu supprimé' });

@@ -8,24 +8,30 @@ import LikeButton from './LikeButton'
 // Appel API
 // Ajout d'un nouveau commentaire
 async function fetchNewComment(credentials, id_user, id_content, token) {
-  return fetch(`http://localhost:3000/api/comment/${id_content}/${id_user}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + token,
-    },
-    body: JSON.stringify(credentials),
-  })
+  return fetch(
+    `http://localhost:3000/api/comment/newcomment/${id_content}/${id_user}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify(credentials),
+    }
+  )
 }
 
 // Suppression d'un post par son auteur
 async function fetchDeletePost(id_user, id_content, token) {
-  return fetch(`http://localhost:3000/api/content/${id_user}/${id_content}`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  })
+  return fetch(
+    `http://localhost:3000/api/content/delete/${id_user}/${id_content}`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    }
+  )
 }
 
 function Card(props) {
@@ -38,8 +44,6 @@ function Card(props) {
   const token = authState.token
   const id_user = authState.id
   const id = props.id_content
-  //const lsUser = JSON.parse(localStorage.getItem('userInfo'))
-  //const id_user = lsUser.id_user
 
   const newComment = async (e) => {
     e.preventDefault()
@@ -81,7 +85,7 @@ function Card(props) {
       try {
         if (id !== undefined) {
           const response = await fetch(
-            `http://localhost:3000/api/comment/${id_user}/${id}`,
+            `http://localhost:3000/api/comment/getallcomment/${id_user}/${id}`,
             {
               method: 'GET',
               headers: {

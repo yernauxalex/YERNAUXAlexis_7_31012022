@@ -6,7 +6,7 @@ const FormData = require('form-data')
 
 // Appel API content simple
 async function fetchNewPost(credentials, id_user, token) {
-  return fetch(`http://localhost:3000/api/content/${id_user}`, {
+  return fetch(`http://localhost:3000/api/content/newpost/${id_user}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ async function fetchNewPost(credentials, id_user, token) {
 
 // Appel API content avec media
 async function fetchNewPostWithMedia(credentials, id_user, token) {
-  return fetch(`http://localhost:3000/api/content/${id_user}`, {
+  return fetch(`http://localhost:3000/api/content/newpost/${id_user}`, {
     method: 'POST',
     headers: {
       Authorization: 'Bearer ' + token,

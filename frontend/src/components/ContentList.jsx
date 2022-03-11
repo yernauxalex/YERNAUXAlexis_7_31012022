@@ -39,7 +39,7 @@ function ContentList() {
       const id_user = authState.id
       try {
         const response = await fetch(
-          `http://localhost:3000/api/content/${id_user}`,
+          `http://localhost:3000/api/content/getrecentcontent/${id_user}`,
           {
             method: 'GET',
             headers: {

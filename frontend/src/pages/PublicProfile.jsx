@@ -50,7 +50,7 @@ function PublicProfile(props) {
       try {
         // Requête pour la dernière interaction
         const response = await fetch(
-          `http://localhost:3000/api/content/${id_user}/${id}`,
+          `http://localhost:3000/api/content/getcontent/${id_user}/${id}`,
           {
             method: 'GET',
             headers: {
