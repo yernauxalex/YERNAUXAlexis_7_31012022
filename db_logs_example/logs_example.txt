@@ -1,0 +1,9 @@
+logs:
+	email: admin@admin.com
+	mdp: ADMIN42!admin
+
+	mail: malcom@gmail.fr
+	mdp: malcomMALCOM12!
+	
+	mail: notauser@gmail.fr
+	mdp: 12douze!DOUZE
