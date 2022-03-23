@@ -48,16 +48,14 @@ function Profile(props) {
 
   const handleLogout = () => {
     setAuthState({ id: '', token: '', status: false })
-    localStorage.removeItem('userInfo')
-    sessionStorage.removeItem('accessToken')
+    localStorage.clear()
     navigate('/signin')
   }
 
   const handleDelete = async (e) => {
     await fetchDelete(id_user, token)
     setAuthState({ id: '', token: '', status: false })
-    localStorage.removeItem('userInfo')
-    sessionStorage.removeItem('accessToken')
+    localStorage.clear()
     navigate('/signup')
   }
   const newPassword = async (e) => {
@@ -73,8 +71,7 @@ function Profile(props) {
           token
         )
         setAuthState({ id: '', token: '', status: false })
-        localStorage.removeItem('userInfo')
-        sessionStorage.removeItem('accessToken')
+        localStorage.clear()
         navigate('/signin')
       } else {
         alert(

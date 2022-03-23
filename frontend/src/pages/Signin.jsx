@@ -28,8 +28,6 @@ function Signin() {
       password,
     })
     if (!data.error) {
-      // Création du token dans le sessionStorage et initialisation du context
-      sessionStorage.setItem('accessToken', data.token)
       setAuthState({
         id: data.id_user,
         token: data.token,
